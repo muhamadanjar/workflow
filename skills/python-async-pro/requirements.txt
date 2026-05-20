@@ -1,0 +1,43 @@
+# Python Async Professional Skill - Dependencies
+
+# Core Framework
+celery==5.3.4
+redis==5.0.1
+pika==1.3.2  # RabbitMQ client (FastAPI default)
+kombu==5.3.4  # For Django compatibility
+
+# FastAPI Support
+fastapi==0.104.1
+uvicorn[standard]==0.24.0
+pydantic==2.5.0
+
+# Django Support
+django==4.2.8
+django-celery-beat==2.5.0
+django-celery-results==2.5.1
+django-stubs==4.2.6
+
+# CLI & Utilities
+click==8.1.7
+colorama==0.4.6
+pyyaml==6.0.1
+
+# Monitoring & Logging
+flower==2.0.1
+prometheus-client==0.19.0
+python-json-logger==2.0.7
+
+# Database (Optional)
+sqlalchemy==2.0.23
+sqlmodel==0.0.14
+psycopg2-binary==2.9.9
+
+# Testing
+pytest==7.4.3
+pytest-asyncio==0.21.1
+pytest-celery==0.0.0
+
+# Code Quality
+ruff==0.1.9
+black==23.12.0
+mypy==1.7.1

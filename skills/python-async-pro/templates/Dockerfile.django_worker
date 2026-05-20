@@ -1,0 +1,46 @@
+# Production Celery Worker for Django
+# With Django ORM support, migrations, logging
+
+FROM python:3.11-slim as builder
+
+WORKDIR /build
+COPY requirements.txt .
+RUN pip install --user --no-cache-dir -r requirements.txt
+
+# Final stage
+FROM python:3.11-slim
+
+RUN useradd -m -u 1000 worker
+
+WORKDIR /app
+COPY --from=builder /root/.local /home/worker/.local
+COPY . .
+
+ENV PATH=/home/worker/.local/bin:$PATH
+ENV PYTHONUNBUFFERED=1
+ENV DJANGO_SETTINGS_MODULE=config.settings.production
+
+# Ensure logs directory exists
+RUN mkdir -p /app/logs && chown worker:worker /app/logs
+
+HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
+    CMD celery -A config worker inspect ping
+
+RUN chown -R worker:worker /app
+USER worker
+
+# Run migrations + start worker
+CMD ["sh", "-c", "\
+    python manage.py migrate --noinput && \
+    exec celery \
+    -A config worker \
+    -Q default,high,email \
+    --concurrency=4 \
+    --loglevel=info \
+    --max-tasks-per-child=1000 \
+    --time-limit=1800 \
+    --soft-time-limit=1500 \
+    --without-gossip \
+    --without-mingle \
+    --without-heartbeat \
+    "]
