@@ -1,23 +1,41 @@
-# Frontend Design Pro - Tailwind CSS v4 + MUI + Zustand
+# Frontend Design Pro - Next.js 16 + React 19 + Components + Zustand
 
-Professional frontend design skill: Modern UI components, state management, and design patterns for React/Next.js.
+Professional frontend design skill: Modern UI components (shadcn/ui or MUI), state management, and design patterns for React/Next.js.
 
 ## Tech Stack
 
-- **UI Framework:** Next.js 14+ (React 19+)
-- **Styling:** Tailwind CSS v4 (latest)
-- **Component Library:** Material-UI (MUI) v6
+**Core Stack:**
+- **UI Framework:** Next.js 16 (React 19+, Server Components by default)
 - **State Management:** Zustand (lightweight, TypeScript-first)
-- **Type Safety:** TypeScript (strict mode)
+- **Language:** TypeScript (strict mode)
+
+**Component Library (Pick One):**
+- **shadcn/ui** (Copy-paste Radix UI + Tailwind CSS)
+- **Material-UI (MUI) v6** (Pre-built Material Design)
+
+**Styling:**
+- **Tailwind CSS v4** (latest, CSS nesting)
+- **Emotion** (for MUI, CSS-in-JS)
 
 ## What's Included
 
-### 1. Component Library
-- Pre-built, production-ready components
-- Fully typed with TypeScript
-- Tailwind CSS + MUI integration
-- Dark mode support
-- Accessibility (a11y) built-in
+### 1. Component Library (Choose One)
+
+**Option A: shadcn/ui** (Recommended for Tailwind-first projects)
+- Copy-paste, customizable components (not npm package)
+- Built on Radix UI (headless) + Tailwind CSS
+- Smaller bundle, full code control
+- Dark mode support (automatic)
+- Accessibility (a11y) built-in (WCAG 2.1)
+- Components: Button, Input, Card, Dialog, Dropdown, Toast, Tabs, Form, etc.
+
+**Option B: Material-UI (MUI) v6** (Recommended for Material Design)
+- Pre-built, opinionated components (npm package)
+- Complete design system + theming
+- Material Design by default
+- Data Grid, Date Pickers, Advanced components
+- Larger bundle, less customization needed
+- Dark mode support built-in
 
 ### 2. Store Patterns (Zustand)
 - Global state management
@@ -333,16 +351,33 @@ export const useAuthStore = create<AuthStore>()(
 
 ## Setup
 
-### 1. Create Next.js Project
+### 1. Create Next.js 16 Project
 ```bash
-npx create-next-app@latest myapp --typescript --tailwind
+npx create-next-app@latest myapp --typescript --tailwind --app
 cd myapp
 ```
 
-### 2. Install Dependencies
+### 2. Install shadcn/ui
 ```bash
-npm install zustand @mui/material @emotion/react @emotion/styled
-npm install -D tailwindcss postcss autoprefixer
+npx shadcn-ui@latest init
+# Select: Typescript, style (default), base color (slate/zinc)
+```
+
+### 3. Add Components
+```bash
+npx shadcn-ui@latest add button
+npx shadcn-ui@latest add input
+npx shadcn-ui@latest add card
+npx shadcn-ui@latest add dialog
+npx shadcn-ui@latest add toast
+# ... more components as needed
+```
+
+### 4. Install Other Dependencies
+```bash
+npm install zustand
+# Optional: MUI if needed
+npm install @mui/material @emotion/react @emotion/styled
 ```
 
 ### 3. Configure Tailwind CSS v4
@@ -566,10 +601,43 @@ test("login updates user", async () => {
 - **Next.js:** https://nextjs.org
 - **React Docs:** https://react.dev
 
+## Guides
+
+### Component Libraries (Choose One)
+- **SHADCN_GUIDE.md** — shadcn/ui (copy-paste, Radix UI + Tailwind CSS)
+- **MUI_GUIDE.md** — Material-UI v6 (npm package, Material Design)
+
+### Framework & State
+- **NEXTJS_SHADCN_SETUP.md** — Step-by-step integration (Next.js 16 + shadcn/ui)
+- **NEXTJS16_GUIDE.md** — Next.js 16 patterns (Server Components, App Router, API routes)
+- **ZUSTAND_PATTERNS.md** — State management patterns
+
 ## Quick Start
 
 ```bash
-# See SETUP_GUIDE.md for detailed setup
-# Copy templates from templates/ directory
-# Review examples in examples/ directory
+# Create project
+npx create-next-app@latest myapp --typescript --tailwind --app
+
+# Initialize shadcn/ui
+npx shadcn-ui@latest init
+
+# Add components
+npx shadcn-ui@latest add button input card form toast
+
+# See NEXTJS_SHADCN_SETUP.md for detailed walkthrough
 ```
+
+## Stack Summary
+
+| Technology | Version | Purpose |
+|---|---|---|
+| Next.js | 16 | Framework, routing, SSR |
+| React | 19+ | UI library, Server Components |
+| TypeScript | Latest | Type safety |
+| **shadcn/ui** | Latest | **Components** (Radix UI + Tailwind CSS) |
+| **Material-UI (MUI)** | v6 | **Components** (Material Design) |
+| Tailwind CSS | v4 | Styling (with shadcn/ui) |
+| Emotion | Latest | CSS-in-JS (with MUI) |
+| Zustand | Latest | State management |
+
+
