@@ -1,0 +1,14 @@
+# Pub/Sub Messaging Skill Dependencies
+
+# RabbitMQ (pika)
+pika==1.3.2
+
+# Redis (redis-py)
+redis==5.0.1
+
+# Optional: Async support
+aio-pika==9.4.0  # Async RabbitMQ
+aioredis==2.0.1  # Async Redis
+
+# Monitoring & Logging
+python-json-logger==2.0.7
