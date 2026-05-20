@@ -6,6 +6,7 @@ Comprehensive guide to all 7 professional skills. Dengan agent recommendations u
 
 | # | Skill | Focus | Size | Agent |
 |---|-------|-------|------|-------|
+| 0 | **api-standard** | API response format (status, data, metas, message) | 6KB | - |
 | 1 | **python-async-pro** | Celery, RabbitMQ, task queues | 4KB | senior-backend-architect |
 | 2 | **fastapi-clean-architecture** | DDD, Clean Architecture patterns | 8KB | senior-fullstack-architect |
 | 3 | **frontend-design-pro** | React 19, Next.js 16, shadcn/ui, MUI | 18KB | senior-frontend-reviewer |
@@ -70,6 +71,50 @@ Recommended Agents:
 ---
 
 ## 📋 Skill Details
+
+### 0. api-standard
+**Focus:** Standardized API response format (status, data, metas, message)
+**Files:** Python module + Shell script
+- api_standard.py (Python module)
+- api-standard.sh (Shell script)
+- README.md (Guide)
+
+**Features:**
+- `APIResponse` class for simple responses
+- `ResponseBuilder` for complex responses with fluent interface
+- Auto-adds `time_elapsed` (ms)
+- Auto-calculates `total_pages` for pagination
+- Integrated in all services (etl_api, payment_api, usermanagement_api, tileserver_api)
+
+**When to use:**
+- Creating API endpoints
+- Standardizing response format
+- Adding pagination
+- Including metadata
+- Error responses
+
+**Quick Usage:**
+```python
+# Simple
+APIResponse.success(message="OK", data=user)
+
+# Complex
+ResponseBuilder()\
+    .with_message("Users")\
+    .with_data(items)\
+    .with_pagination(page=1, page_size=10, total=100)\
+    .build()
+```
+
+**Shell Commands:**
+```bash
+./api-standard.sh template     # Quick template
+./api-standard.sh pagination   # Pagination example
+./api-standard.sh builder      # ResponseBuilder pattern
+./api-standard.sh docs         # Full documentation
+```
+
+---
 
 ### 1. python-async-pro
 **Focus:** Celery task queues, RabbitMQ, async job processing
