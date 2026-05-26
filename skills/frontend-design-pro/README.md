@@ -6,8 +6,10 @@ Professional frontend design skill: Modern UI components (shadcn/ui or MUI), sta
 
 **Core Stack:**
 - **UI Framework:** Next.js 16 (React 19+, Server Components by default)
-- **State Management:** Zustand (lightweight, TypeScript-first)
+- **State Management:** Zustand (client/UI state) + TanStack React Query (server state)
 - **Language:** TypeScript (strict mode)
+- **Data Fetching:** TanStack React Query v5
+- **Tables:** TanStack React Table v8
 
 **Component Library (Pick One):**
 - **shadcn/ui** (Copy-paste Radix UI + Tailwind CSS)
@@ -376,6 +378,9 @@ npx shadcn-ui@latest add toast
 ### 4. Install Other Dependencies
 ```bash
 npm install zustand
+npm install @tanstack/react-query @tanstack/react-query-devtools
+npm install @tanstack/react-table
+npm install @tanstack/react-virtual  # for virtualized tables
 # Optional: MUI if needed
 npm install @mui/material @emotion/react @emotion/styled
 ```
@@ -610,7 +615,11 @@ test("login updates user", async () => {
 ### Framework & State
 - **NEXTJS_SHADCN_SETUP.md** — Step-by-step integration (Next.js 16 + shadcn/ui)
 - **NEXTJS16_GUIDE.md** — Next.js 16 patterns (Server Components, App Router, API routes)
-- **ZUSTAND_PATTERNS.md** — State management patterns
+- **ZUSTAND_PATTERNS.md** — Client/UI state management patterns
+
+### Data Fetching & Tables
+- **REACT_QUERY_GUIDE.md** — TanStack React Query v5 (basic → professional, SSR, optimistic updates, query factory)
+- **TANSTACK_TABLE_GUIDE.md** — TanStack React Table v8 (basic → virtual/server-side, reusable DataTable component)
 
 ## Quick Start
 
@@ -638,6 +647,9 @@ npx shadcn-ui@latest add button input card form toast
 | **Material-UI (MUI)** | v6 | **Components** (Material Design) |
 | Tailwind CSS | v4 | Styling (with shadcn/ui) |
 | Emotion | Latest | CSS-in-JS (with MUI) |
-| Zustand | Latest | State management |
+| Zustand | Latest | Client/UI state management |
+| TanStack Query | v5 | Server state, data fetching, caching |
+| TanStack Table | v8 | Headless table engine |
+| TanStack Virtual | Latest | Row virtualization (large datasets) |
 
 
