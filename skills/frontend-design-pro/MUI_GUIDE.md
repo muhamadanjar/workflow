@@ -1,4 +1,6 @@
-# Material-UI (MUI) v6 Guide
+# Material-UI (MUI) v9 Guide
+
+> **MUI v9** is current stable. Breaking changes from v5→v6: Grid new API (`size` prop, no `item`). From v6+: CSS Variables theming. Check [migration guide](https://mui.com/material-ui/migration/) for v6→v9 specifics.
 
 Pre-built Material Design components for React/Next.js.
 
@@ -12,7 +14,7 @@ Pre-built Material Design components for React/Next.js.
 | Format | npm package | copy-paste |
 | Customization | Theme system | Direct code modification |
 | Bundle size | Larger | Smaller (only what you use) |
-| Styling | Emotion (CSS-in-JS) | Tailwind CSS |
+| Styling | Emotion or Pigment CSS | Tailwind CSS |
 | Pre-built | Yes, opinionated | Yes, copy-paste |
 | Learning curve | Steeper (theme system) | Easier |
 | Dark mode | Built-in | Built-in |
@@ -31,13 +33,13 @@ Pre-built Material Design components for React/Next.js.
 # Create Next.js project
 npx create-next-app@latest myapp --typescript --app
 
-# Install MUI
-npm install @mui/material @emotion/react @emotion/styled
+# Install MUI v9
+npm install @mui/material@9 @emotion/react @emotion/styled
 
 # Install icons
-npm install @mui/icons-material
+npm install @mui/icons-material@9
 
-# Optional: Install X (data grid, date picker, etc.)
+# Optional: MUI X — check https://mui.com/x/introduction/installation/ for version that pairs with MUI v9
 npm install @mui/x-data-grid @mui/x-date-pickers
 ```
 
@@ -102,12 +104,60 @@ export const darkTheme = createTheme({
     },
   },
 })
+
+// v6: CSS Variables theme (recommended — avoids flash of unstyled content)
+import { extendTheme } from "@mui/material/styles"
+
+export const cssVarsTheme = extendTheme({
+  colorSchemes: {
+    light: {
+      palette: {
+        primary: { main: "#2563eb" },
+        background: { default: "#f8fafc" },
+      },
+    },
+    dark: {
+      palette: {
+        primary: { main: "#60a5fa" },
+        background: { default: "#0f172a" },
+      },
+    },
+  },
+})
 ```
 
 ### 2. Setup Root Layout
 
 ```tsx
-// src/app/layout.tsx
+// src/app/layout.tsx — using CSS Variables theme (v6, recommended)
+import { AppRouterCacheProvider } from "@mui/material-nextjs/v15-appRouter"
+import { CssVarsProvider } from "@mui/material/styles"
+import CssBaseline from "@mui/material/CssBaseline"
+import { cssVarsTheme } from "@/lib/theme"
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <html lang="en" suppressHydrationWarning>
+      <body>
+        <AppRouterCacheProvider>
+          <CssVarsProvider theme={cssVarsTheme}>
+            <CssBaseline />
+            {children}
+          </CssVarsProvider>
+        </AppRouterCacheProvider>
+      </body>
+    </html>
+  )
+}
+```
+
+```bash
+# Required for Next.js App Router + MUI v9
+npm install @mui/material-nextjs@9
+```
+
+```tsx
+// Alternative: classic ThemeProvider (still works)
 "use client"
 
 import { ThemeProvider } from "@mui/material/styles"
@@ -115,14 +165,14 @@ import CssBaseline from "@mui/material/CssBaseline"
 import { useState } from "react"
 import { lightTheme, darkTheme } from "@/lib/theme"
 
-export default function RootLayout({ children }) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   const [darkMode, setDarkMode] = useState(false)
 
   return (
     <html lang="en">
       <body>
         <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
-          <CssBaseline />  {/* Resets default styles */}
+          <CssBaseline />
           {children}
         </ThemeProvider>
       </body>
@@ -381,22 +431,34 @@ import { Stack, Button } from "@mui/material"
 </Stack>
 ```
 
-### Grid
+### Grid (v6 — breaking change from v5)
+
+v6 removes `item` prop and `xs`/`sm`/`md` direct props. Use `size` instead.
 
 ```tsx
 import { Grid } from "@mui/material"
 
+// ✅ v6 syntax
 <Grid container spacing={2}>
-  <Grid item xs={12} sm={6} md={4}>
+  <Grid size={{ xs: 12, sm: 6, md: 4 }}>
     <div>Item 1</div>
   </Grid>
-  <Grid item xs={12} sm={6} md={4}>
+  <Grid size={{ xs: 12, sm: 6, md: 4 }}>
     <div>Item 2</div>
   </Grid>
-  <Grid item xs={12} sm={6} md={4}>
+  <Grid size={{ xs: 12, sm: 6, md: 4 }}>
     <div>Item 3</div>
   </Grid>
 </Grid>
+
+// Fixed size
+<Grid size={6}>Fixed half width</Grid>
+
+// Auto size (fills remaining space)
+<Grid size="grow">Grow</Grid>
+
+// ❌ OLD v5 syntax — do not use
+// <Grid item xs={12} sm={6}>
 ```
 
 ### Box
@@ -728,7 +790,7 @@ export function StorageCard() {
 ### Action Bar
 
 ```tsx
-import { AppBar, Toolbar, Button, Stack } from "@mui/material"
+import { AppBar, Toolbar, Button, Stack, Typography } from "@mui/material"
 
 export function ActionBar() {
   return (

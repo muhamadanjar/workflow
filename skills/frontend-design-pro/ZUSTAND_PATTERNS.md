@@ -1,6 +1,8 @@
 # Zustand Patterns & Best Practices
 
-Production-ready Zustand patterns for React/Next.js applications.
+Production-ready Zustand v5 patterns for React/Next.js applications.
+
+> **Zustand v5** (current). Breaking changes from v4: `shallow` import path changed, `SetState` type removed (use `StateCreator`), `useShallow` consolidated into `"zustand/react/shallow"`.
 
 ## Table of Contents
 
@@ -186,13 +188,16 @@ function Profile() {
 ### Slice Pattern (Multiple Stores)
 ```typescript
 // stores/auth.ts
+import { StateCreator } from "zustand";
+import type { AppStore } from "./index";
+
 export interface AuthSlice {
   user: User | null;
   login: (credentials: Credentials) => Promise<void>;
   logout: () => void;
 }
 
-export const createAuthSlice = (set: SetState<AppStore>): AuthSlice => ({
+export const createAuthSlice: StateCreator<AppStore, [], [], AuthSlice> = (set) => ({
   user: null,
   login: async (credentials) => {
     const user = await api.login(credentials);
@@ -202,12 +207,15 @@ export const createAuthSlice = (set: SetState<AppStore>): AuthSlice => ({
 });
 
 // stores/ui.ts
+import { StateCreator } from "zustand";
+import type { AppStore } from "./index";
+
 export interface UISlice {
   sidebarOpen: boolean;
   toggleSidebar: () => void;
 }
 
-export const createUISlice = (set: SetState<AppStore>): UISlice => ({
+export const createUISlice: StateCreator<AppStore, [], [], UISlice> = (set) => ({
   sidebarOpen: true,
   toggleSidebar: () => set((state) => ({ sidebarOpen: !state.sidebarOpen })),
 });
@@ -219,9 +227,9 @@ import { UISlice, createUISlice } from "./ui";
 
 export type AppStore = AuthSlice & UISlice;
 
-export const useAppStore = create<AppStore>((set) => ({
-  ...createAuthSlice(set),
-  ...createUISlice(set),
+export const useAppStore = create<AppStore>((...args) => ({
+  ...createAuthSlice(...args),
+  ...createUISlice(...args),
 }));
 ```
 
@@ -315,26 +323,26 @@ function Component() {
 }
 ```
 
-### Shallow Comparison
+### useShallow Hook (preferred in v5)
 ```typescript
-import { shallow } from "zustand/react/shallow";
+import { useShallow } from "zustand/react/shallow";
 
-// Only re-render if user OR preferences change
-const { user, preferences } = useUserStore(
-  (state) => ({ user: state.user, preferences: state.preferences }),
-  shallow
-);
-```
-
-### useShallow Hook (React 19+)
-```typescript
-import { useShallow } from "zustand/react/useShallow";
-
+// Re-renders only when user or preferences change
 const { user, preferences } = useUserStore(
   useShallow((state) => ({
     user: state.user,
     preferences: state.preferences,
   }))
+);
+```
+
+### Shallow Comparison (manual — less common)
+```typescript
+import { shallow } from "zustand/shallow";
+
+const { user, preferences } = useUserStore(
+  (state) => ({ user: state.user, preferences: state.preferences }),
+  shallow
 );
 ```
 
@@ -526,7 +534,7 @@ export const useNotificationStore = create<NotificationStore>((set) => ({
   notifications: [],
 
   addNotification: ({ message, type, duration = 3000 }) => {
-    const id = Math.random().toString(36).substr(2, 9);
+    const id = crypto.randomUUID();
     set((state) => ({
       notifications: [...state.notifications, { id, message, type }],
     }));
@@ -563,8 +571,16 @@ export const useNotificationStore = create<NotificationStore>((set) => ({
    }
    ```
 
-3. **Async initialization:**
+3. **Async initialization (requires `subscribeWithSelector` middleware):**
    ```typescript
+   import { subscribeWithSelector } from "zustand/middleware";
+
+   // Store must use subscribeWithSelector middleware
+   export const useAuthStore = create<AuthStore>()(
+     subscribeWithSelector((set) => ({ /* ... */ }))
+   );
+
+   // Then subscribe to a slice
    useAuthStore.subscribe(
      (state) => state.token,
      async (token) => {

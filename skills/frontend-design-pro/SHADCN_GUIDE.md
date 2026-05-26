@@ -19,7 +19,8 @@ Copy-paste component library built on Radix UI + Tailwind CSS.
 ### 1. Initialize shadcn/ui
 
 ```bash
-npx shadcn-ui@latest init
+# CLI renamed from shadcn-ui → shadcn
+npx shadcn@latest init
 ```
 
 Options:
@@ -27,22 +28,22 @@ Options:
 - Which style: Default (New York)
 - Base color: slate/zinc/stone/gray/neutral
 
-Creates: `components/ui/` directory
+Creates: `components/ui/` + `components.json` config
 
 ### 2. Add Components
 
 ```bash
 # Add individual components
-npx shadcn-ui@latest add button
-npx shadcn-ui@latest add input
-npx shadcn-ui@latest add card
-npx shadcn-ui@latest add dialog
-npx shadcn-ui@latest add dropdown-menu
-npx shadcn-ui@latest add tabs
-npx shadcn-ui@latest add toast
+npx shadcn@latest add button
+npx shadcn@latest add input
+npx shadcn@latest add card
+npx shadcn@latest add dialog
+npx shadcn@latest add dropdown-menu
+npx shadcn@latest add tabs
+npx shadcn@latest add sonner   # Toast replacement
 
 # Add all
-npx shadcn-ui@latest add --all
+npx shadcn@latest add --all
 ```
 
 Components copied to: `src/components/ui/`
@@ -170,24 +171,46 @@ export function DropdownMenuDemo() {
 }
 ```
 
-### Toast
+### Toast (Sonner — replaces old useToast)
+
+```bash
+npx shadcn@latest add sonner
+```
 
 ```tsx
-import { useToast } from "@/components/ui/use-toast"
+// src/app/layout.tsx — add Toaster once at root
+import { Toaster } from "@/components/ui/sonner"
+
+export default function RootLayout({ children }) {
+  return (
+    <html lang="en">
+      <body>
+        {children}
+        <Toaster />
+      </body>
+    </html>
+  )
+}
+```
+
+```tsx
+// Usage anywhere
+import { toast } from "sonner"
 import { Button } from "@/components/ui/button"
 
 export function ToastDemo() {
-  const { toast } = useToast()
-
   return (
-    <Button onClick={() => {
-      toast({
-        title: "Success",
-        description: "Your action was successful",
-      })
-    }}>
-      Show Toast
-    </Button>
+    <div className="flex gap-2">
+      <Button onClick={() => toast("Default message")}>Default</Button>
+      <Button onClick={() => toast.success("Saved successfully")}>Success</Button>
+      <Button onClick={() => toast.error("Something went wrong")}>Error</Button>
+      <Button onClick={() => toast.warning("Check this out")}>Warning</Button>
+      <Button onClick={() => toast.promise(saveData(), {
+        loading: "Saving...",
+        success: "Saved!",
+        error: "Failed to save",
+      })}>Promise</Button>
+    </div>
   )
 }
 ```
@@ -281,13 +304,14 @@ export function FormDemo() {
 ```tsx
 "use client"
 
+import { useState, useEffect } from "react"
 import { Moon, Sun } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
 export function ThemeToggle() {
-  const [theme, setTheme] = React.useState<"light" | "dark">("light")
+  const [theme, setTheme] = useState<"light" | "dark">("light")
 
-  React.useEffect(() => {
+  useEffect(() => {
     const root = document.documentElement
     if (theme === "dark") {
       root.classList.add("dark")
@@ -503,9 +527,7 @@ export function CardDemo() {
 - Table, Data Table (with TanStack Table)
 
 **Feedback:**
-- Toast, Sonner (alternative toast)
-- Progress, Skeleton
-- Spinner, Badge
+- Sonner (toast — default), Progress, Skeleton, Badge
 
 **Charts:**
 - Recharts integration (separate)

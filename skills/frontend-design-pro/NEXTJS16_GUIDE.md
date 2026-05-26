@@ -181,18 +181,23 @@ export function PostCard({ post }: PostCardProps) {
 
 ### Dynamic Routes
 
+> **Next.js 15+ breaking change:** `params` and `searchParams` are now `Promise`. Must `await` them.
+
 ```tsx
 // app/posts/[id]/page.tsx
 interface PostPageProps {
-  params: { id: string }
-  searchParams: { view?: string }
+  params: Promise<{ id: string }>
+  searchParams: Promise<{ view?: string }>
 }
 
-export default function PostPage({ params, searchParams }: PostPageProps) {
+export default async function PostPage({ params, searchParams }: PostPageProps) {
+  const { id } = await params
+  const { view } = await searchParams
+
   return (
     <div>
-      <h1>Post {params.id}</h1>
-      {searchParams.view === "full" && <p>Full view</p>}
+      <h1>Post {id}</h1>
+      {view === "full" && <p>Full view</p>}
     </div>
   )
 }
@@ -267,34 +272,32 @@ export async function POST(request: Request) {
 // app/api/posts/[id]/route.ts
 export async function GET(
   request: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   // GET /api/posts/123
-  const post = await db.post.findUnique({
-    where: { id: params.id }
-  })
+  const { id } = await params
+  const post = await db.post.findUnique({ where: { id } })
   return Response.json(post)
 }
 
 export async function PUT(
   request: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   // PUT /api/posts/123
+  const { id } = await params
   const body = await request.json()
-  const post = await db.post.update({
-    where: { id: params.id },
-    data: body
-  })
+  const post = await db.post.update({ where: { id }, data: body })
   return Response.json(post)
 }
 
 export async function DELETE(
   request: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   // DELETE /api/posts/123
-  await db.post.delete({ where: { id: params.id } })
+  const { id } = await params
+  await db.post.delete({ where: { id } })
   return new Response(null, { status: 204 })
 }
 ```
@@ -330,8 +333,7 @@ export const config = {
 // app/posts/page.tsx
 export default async function PostsPage() {
   const posts = await fetch(`${process.env.API_URL}/posts`, {
-    cache: "revalidate", // ISR: revalidate every 60 seconds
-    next: { revalidate: 60 }
+    next: { revalidate: 60 }  // ISR: revalidate every 60 seconds
   }).then(r => r.json())
   
   return (
@@ -476,16 +478,17 @@ const apiUrl = process.env.NEXT_PUBLIC_API_URL  // ✅ Available in browser
 - Code splitting (dynamic imports)
 - Caching strategies (cache, revalidate)
 
-✅ **Type-Safe Parameters**
+✅ **Type-Safe Parameters (Next.js 15+)**
 ```tsx
-// ✅ Good
+// ✅ params and searchParams are Promise in Next.js 15+
 interface PageProps {
-  params: { id: string }
-  searchParams: Record<string, string>
+  params: Promise<{ id: string }>
+  searchParams: Promise<Record<string, string>>
 }
 
-export default function Page({ params, searchParams }: PageProps) {
-  // params and searchParams are typed
+export default async function Page({ params, searchParams }: PageProps) {
+  const { id } = await params
+  const { filter } = await searchParams
 }
 ```
 

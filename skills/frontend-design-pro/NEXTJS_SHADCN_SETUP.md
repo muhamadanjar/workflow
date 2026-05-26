@@ -19,7 +19,7 @@ cd myapp
 ## 2. Initialize shadcn/ui
 
 ```bash
-npx shadcn-ui@latest init
+npx shadcn@latest init
 ```
 
 **Prompts:**
@@ -103,24 +103,23 @@ export default function RootLayout({
 
 ```bash
 # Add individual components
-npx shadcn-ui@latest add button
-npx shadcn-ui@latest add input
-npx shadcn-ui@latest add card
-npx shadcn-ui@latest add dialog
-npx shadcn-ui@latest add dropdown-menu
-npx shadcn-ui@latest add form
-npx shadcn-ui@latest add toast
-npx shadcn-ui@latest add sonner  # Toast alternative
+npx shadcn@latest add button
+npx shadcn@latest add input
+npx shadcn@latest add card
+npx shadcn@latest add dialog
+npx shadcn@latest add dropdown-menu
+npx shadcn@latest add form
+npx shadcn@latest add sonner
 
 # Add commonly used set
-npx shadcn-ui@latest add \
+npx shadcn@latest add \
   button \
   input \
   card \
   dialog \
   dropdown-menu \
   form \
-  toast \
+  sonner \
   tabs \
   table
 ```
@@ -216,7 +215,7 @@ export function Hero() {
 
 ```bash
 npm install react-hook-form
-npx shadcn-ui@latest add form
+npx shadcn@latest add form
 ```
 
 ```tsx
