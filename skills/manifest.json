@@ -1,0 +1,183 @@
+{
+  "version": "1.0.0",
+  "name": "AI Coding Skills Collection",
+  "description": "Professional AI coding skills for fullstack engineering with Python, Go, React, Docker, and microservices",
+  "author": "Developer",
+  "license": "MIT",
+  "repository": "https://github.com/yourname/ai-coding-skills",
+  "keywords": ["skills", "ai-assistant", "coding", "fullstack", "go", "python", "react", "docker", "kubernetes"],
+  "platforms": ["claude", "codex", "opencode", "pi"],
+  "skills": [
+    {
+      "id": "python-async-pro",
+      "name": "Python Async Pro",
+      "version": "1.0.0",
+      "description": "Advanced Python async patterns, asyncio, aiohttp, and concurrent programming",
+      "category": "backend",
+      "tags": ["python", "async", "concurrency"],
+      "guides": [
+        "README.md",
+        "PIKA_GUIDE.md",
+        "GUIDE.md"
+      ],
+      "platforms": ["claude", "codex", "opencode", "pi"]
+    },
+    {
+      "id": "fastapi-clean-architecture",
+      "name": "FastAPI Clean Architecture",
+      "version": "1.0.0",
+      "description": "Clean architecture principles for FastAPI applications",
+      "category": "backend",
+      "tags": ["python", "fastapi", "architecture"],
+      "guides": [
+        "README.md",
+        "ARCHITECTURE_GUIDE.md"
+      ],
+      "platforms": ["claude", "codex", "opencode", "pi"]
+    },
+    {
+      "id": "frontend-design-pro",
+      "name": "Frontend Design Pro",
+      "version": "1.0.0",
+      "description": "Advanced React patterns with TypeScript, shadcn, Material-UI, Zustand, and TanStack",
+      "category": "frontend",
+      "tags": ["react", "typescript", "frontend", "design-systems"],
+      "guides": [
+        "README.md",
+        "SHADCN_GUIDE.md",
+        "MUI_GUIDE.md",
+        "NEXTJS16_GUIDE.md",
+        "ZUSTAND_PATTERNS.md",
+        "TANSTACK_TABLE_GUIDE.md"
+      ],
+      "platforms": ["claude", "codex", "opencode", "pi"]
+    },
+    {
+      "id": "pubsub-messaging",
+      "name": "Pub/Sub Messaging Patterns",
+      "version": "1.0.0",
+      "description": "Message broker patterns with RabbitMQ and Redis",
+      "category": "backend",
+      "tags": ["messaging", "rabbitmq", "redis", "pubsub"],
+      "guides": [
+        "README.md",
+        "PATTERNS_GUIDE.md"
+      ],
+      "platforms": ["claude", "codex", "opencode", "pi"]
+    },
+    {
+      "id": "mermaid-diagrams",
+      "name": "Mermaid Diagrams",
+      "version": "1.0.0",
+      "description": "Mermaid diagram syntax for architecture, flow, and sequence diagrams",
+      "category": "documentation",
+      "tags": ["mermaid", "diagrams", "visualization"],
+      "guides": [
+        "README.md",
+        "BASIC_DIAGRAMS.md",
+        "INTERMEDIATE_DIAGRAMS.md",
+        "ADVANCED_DIAGRAMS.md",
+        "BEST_PRACTICES.md",
+        "CLI_REFERENCE.md"
+      ],
+      "platforms": ["claude", "codex", "opencode", "pi"]
+    },
+    {
+      "id": "redis-caching",
+      "name": "Redis Caching Patterns",
+      "version": "1.0.0",
+      "description": "Redis caching strategies, patterns, and production optimization",
+      "category": "infrastructure",
+      "tags": ["redis", "caching", "performance"],
+      "guides": [
+        "README.md",
+        "BEST_PRACTICES.md",
+        "PATTERNS_GUIDE.md",
+        "IMPLEMENTATION.md",
+        "INVALIDATION_GUIDE.md",
+        "MONITORING_GUIDE.md"
+      ],
+      "platforms": ["claude", "codex", "opencode", "pi"]
+    },
+    {
+      "id": "database-design",
+      "name": "Database Design Patterns",
+      "version": "1.0.0",
+      "description": "Database schema design, optimization, and best practices",
+      "category": "infrastructure",
+      "tags": ["database", "sql", "schema", "performance"],
+      "guides": [
+        "README.md",
+        "BASICS.md",
+        "INTERMEDIATE.md",
+        "ADVANCED.md",
+        "PATTERNS.md",
+        "PERFORMANCE.md",
+        "SECURITY.md",
+        "EXAMPLES.md"
+      ],
+      "platforms": ["claude", "codex", "opencode", "pi"]
+    },
+    {
+      "id": "go-microservices-pro",
+      "name": "Go Microservices Pro",
+      "version": "1.0.0",
+      "description": "Professional Go microservices architecture, gRPC, and production patterns",
+      "category": "backend",
+      "tags": ["go", "microservices", "grpc", "backend"],
+      "guides": [
+        "README.md",
+        "ARCHITECTURE_GUIDE.md",
+        "GRPC_GUIDE.md",
+        "PATTERNS.md",
+        "PRODUCTION.md"
+      ],
+      "platforms": ["claude", "codex", "opencode", "pi"]
+    },
+    {
+      "id": "docker-kubernetes-ops",
+      "name": "Docker & Kubernetes Operations",
+      "version": "1.0.0",
+      "description": "Containerization and orchestration with Docker, Compose, and Kubernetes",
+      "category": "devops",
+      "tags": ["docker", "kubernetes", "containers", "devops"],
+      "guides": [
+        "README.md",
+        "DOCKER_GUIDE.md",
+        "DOCKER_COMPOSE.md",
+        "KUBERNETES_GUIDE.md"
+      ],
+      "platforms": ["claude", "codex", "opencode", "pi"]
+    },
+    {
+      "id": "api-design-patterns",
+      "name": "API Design Patterns",
+      "version": "1.0.0",
+      "description": "REST, gRPC, GraphQL, and third-party API integration patterns",
+      "category": "backend",
+      "tags": ["api", "rest", "grpc", "graphql", "integration"],
+      "guides": [
+        "README.md",
+        "REST_GUIDE.md",
+        "AUTH_PATTERNS.md",
+        "THIRD_PARTY.md"
+      ],
+      "platforms": ["claude", "codex", "opencode", "pi"]
+    },
+    {
+      "id": "testing-strategies-pro",
+      "name": "Testing Strategies Pro",
+      "version": "1.0.0",
+      "description": "Comprehensive testing strategies for unit, integration, and E2E tests",
+      "category": "testing",
+      "tags": ["testing", "pytest", "go", "jest", "playwright"],
+      "guides": [
+        "README.md",
+        "UNIT_TESTING.md",
+        "INTEGRATION_TESTING.md",
+        "E2E_TESTING.md"
+      ],
+      "platforms": ["claude", "codex", "opencode", "pi"]
+    }
+  ]
+}
