@@ -55,13 +55,14 @@
     {
       "id": "pubsub-messaging",
       "name": "Pub/Sub Messaging Patterns",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "description": "Message broker patterns with RabbitMQ and Redis",
       "category": "backend",
       "tags": ["messaging", "rabbitmq", "redis", "pubsub"],
       "guides": [
         "README.md",
-        "PATTERNS_GUIDE.md"
+        "PATTERNS_GUIDE.md",
+        "RABBITMQ_GUIDE.md"
       ],
       "platforms": ["claude", "codex", "opencode", "pi"]
     },
@@ -176,6 +177,103 @@
         "UNIT_TESTING.md",
         "INTEGRATION_TESTING.md",
         "E2E_TESTING.md"
+      ],
+      "platforms": ["claude", "codex", "opencode", "pi"]
+    },
+    {
+      "id": "object-storage-patterns",
+      "name": "Object Storage Patterns",
+      "version": "1.0.0",
+      "description": "S3-compatible object storage (Minio, AWS S3) - patterns, optimization, and security",
+      "category": "infrastructure",
+      "tags": ["s3", "minio", "object-storage", "aws"],
+      "guides": [
+        "README.md",
+        "FUNDAMENTALS.md",
+        "UPLOAD_STRATEGIES.md",
+        "PRESIGNED_URLS.md",
+        "OPTIMIZATION.md",
+        "SECURITY.md"
+      ],
+      "platforms": ["claude", "codex", "opencode", "pi"]
+    },
+    {
+      "id": "data-manipulation-pandas",
+      "name": "Data Manipulation with Pandas",
+      "version": "1.0.0",
+      "description": "Professional data manipulation, analysis, and visualization with Pandas and NumPy",
+      "category": "data-science",
+      "tags": ["python", "pandas", "data", "analysis"],
+      "guides": [
+        "README.md",
+        "BASICS.md",
+        "DATA_CLEANING.md",
+        "TRANSFORMATION.md",
+        "ANALYSIS.md",
+        "VISUALIZATION.md",
+        "PERFORMANCE.md"
+      ],
+      "platforms": ["claude", "codex", "opencode", "pi"]
+    },
+    {
+      "id": "geospatial-analytics",
+      "name": "Geospatial Analytics with GeoPandas",
+      "version": "1.0.0",
+      "description": "Professional geospatial analysis, mapping, and spatial operations with GeoPandas",
+      "category": "data-science",
+      "tags": ["geospatial", "geopandas", "mapping", "spatial-analysis"],
+      "guides": [
+        "README.md",
+        "BASICS.md",
+        "SPATIAL_QUERIES.md",
+        "MAPPING.md",
+        "ANALYSIS.md",
+        "PERFORMANCE.md",
+        "INTEGRATION.md"
+      ],
+      "platforms": ["claude", "codex", "opencode", "pi"]
+    },
+    {
+      "id": "task-queues-jobs",
+      "name": "Task Queues & Job Processing",
+      "version": "1.0.0",
+      "description": "Asynchronous task execution with Celery, Bull, and job scheduling",
+      "category": "backend",
+      "tags": ["celery", "bull", "queue", "jobs", "async"],
+      "guides": [
+        "README.md",
+        "CELERY_GUIDE.md",
+        "BULL_GUIDE.md",
+        "SCHEDULING.md"
+      ],
+      "platforms": ["claude", "codex", "opencode", "pi"]
+    },
+    {
+      "id": "monitoring-observability",
+      "name": "Monitoring & Observability",
+      "version": "1.0.0",
+      "description": "Production monitoring, observability, and alerting with Prometheus, Grafana, and logging",
+      "category": "devops",
+      "tags": ["prometheus", "grafana", "monitoring", "logging", "observability"],
+      "guides": [
+        "README.md",
+        "PROMETHEUS_GUIDE.md",
+        "LOGGING.md",
+        "ALERTING.md"
+      ],
+      "platforms": ["claude", "codex", "opencode", "pi"]
+    },
+    {
+      "id": "websockets-realtime",
+      "name": "WebSockets & Real-time Communication",
+      "version": "1.0.0",
+      "description": "Real-time bidirectional communication with WebSockets, Socket.io, and server-sent events",
+      "category": "backend",
+      "tags": ["websockets", "socket.io", "realtime", "sse"],
+      "guides": [
+        "README.md",
+        "SOCKETIO_GUIDE.md",
+        "SSE_GUIDE.md"
       ],
       "platforms": ["claude", "codex", "opencode", "pi"]
     }

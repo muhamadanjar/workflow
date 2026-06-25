@@ -1,6 +1,6 @@
 # Skills Index & Quick Reference
 
-Comprehensive guide to all 7 professional skills. Dengan agent recommendations untuk setiap skill.
+Comprehensive guide to all 10 professional skills. Dengan agent recommendations untuk setiap skill.
 
 ## 📚 All Skills Overview
 
@@ -14,6 +14,8 @@ Comprehensive guide to all 7 professional skills. Dengan agent recommendations u
 | 5 | **mermaid-diagrams** | 12 diagram types, rendering, CI/CD | 30KB | system-architect |
 | 6 | **redis-caching** | Data structures, patterns, optimization | 30KB | senior-backend-architect |
 | 7 | **database-design** | PostgreSQL, DDL/DML, triggers, stored procedures | 40KB | senior-backend-architect |
+| 8 | **code-review-pro** | Feasibility, features, security, error handling | 25KB | production-code-reviewer |
+| 9 | **graphql-patterns** | Apollo, Hasura, federation, subscriptions, optimization | 35KB | senior-backend-architect |
 
 ---
 
@@ -277,6 +279,75 @@ ResponseBuilder()\
 
 ---
 
+### 8. code-review-pro
+**Focus:** Multi-dimensional code review across feasibility, features, security, error handling
+**Files:** 3 guides (25KB)
+- README.md (4 dimensions, integration guide)
+- PYTHON_FASTAPI_EXAMPLES.md (practical examples)
+- QUICK_CHECKLIST.md (30-sec to 30-min review)
+
+**Coverage:**
+- Feasibility: architecture, dependencies, scalability, config
+- Features: correctness, edge cases, concurrency, performance
+- Security: OWASP Top 10, injection, auth, secrets, logging
+- Error Handling: exception types, HTTP status, retry logic, fallbacks
+
+**When to use:**
+- Before merging to production
+- New features (> 50 lines)
+- Critical paths (auth, payments, data)
+- Security audits
+- Refactoring large changes
+
+**Quick Process:**
+1. 30-sec scan: check critical issues (hardcoded secrets, injection)
+2. 5-min review: feasibility + features + security + errors
+3. 15-min detailed: full checklist per dimension
+4. 30-min ultra: use production-code-reviewer agent
+
+**Agent:** production-code-reviewer (for ultra review)
+
+---
+
+### 9. graphql-patterns
+**Focus:** Apollo Server/Client, Hasura, federation, subscriptions, performance
+**Files:** 6 guides (35KB)
+- README.md (overview, quick start)
+- FUNDAMENTALS.md (types, resolvers, mutations, schema design)
+- APOLLO_SERVER.md (server setup, authentication, error handling, plugins)
+- APOLLO_CLIENT.md (React hooks, caching, subscriptions, custom hooks)
+- ADVANCED.md (federation, subscriptions, fragments, directives, batch ops)
+- OPTIMIZATION.md (N+1 queries, query complexity, pagination, monitoring)
+- HASURA.md (instant APIs, permissions, webhooks, remote schemas, events)
+
+**Coverage:**
+- Apollo Server + Client (full stack)
+- Schema design + composition (federation)
+- Real-time subscriptions
+- Performance optimization (caching, pagination, N+1 fixes)
+- Hasura instant GraphQL APIs
+- Permissions & row-level security
+
+**When to use:**
+- Building GraphQL APIs (Apollo Server)
+- React/TypeScript clients with Apollo
+- Real-time features (subscriptions)
+- API federation (multiple services)
+- Quick API generation (Hasura)
+- Performance optimization
+
+**Quick Process:**
+1. Schema design → FUNDAMENTALS.md
+2. Server implementation → APOLLO_SERVER.md
+3. Client integration → APOLLO_CLIENT.md
+4. Advanced patterns → ADVANCED.md
+5. Optimization → OPTIMIZATION.md
+6. No-code API → HASURA.md
+
+**Agent:** senior-backend-architect
+
+---
+
 ## 🔗 Skill Relationships
 
 ```
@@ -464,7 +535,7 @@ All skills include:
 
 ## 🔄 Skills Update Status
 
-All skills updated as of: **2026-05-20**
+All skills updated as of: **2026-06-25**
 
 - ✅ python-async-pro (Celery + Pika)
 - ✅ fastapi-clean-architecture (DDD patterns)
@@ -473,6 +544,8 @@ All skills updated as of: **2026-05-20**
 - ✅ mermaid-diagrams (12 diagram types)
 - ✅ redis-caching (patterns + monitoring)
 - ✅ database-design (PostgreSQL professional)
+- ✅ code-review-pro (4 dimensions + quick checklist) — **NEW**
+- ✅ graphql-patterns (Apollo + Hasura, federation, optimization) — **COMPLETED**
 
-**Total:** 7 skills, 40+ guides, 400+ code examples
+**Total:** 10 skills, 60+ guides, 500+ code examples
 

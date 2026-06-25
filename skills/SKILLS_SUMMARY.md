@@ -4,6 +4,28 @@ Professional skill packages for full-stack development.
 
 ## Installed Skills
 
+### 0. Code Review Pro (code-review-pro) — NEW
+**For:** Pre-merge code review covering all critical dimensions
+- **Dimensions:** Feasibility, Features, Security, Error Handling
+- **Quick Process:** 30-sec critical scan → 5-min review → 15-min detailed → 30-min ultra
+- **Location:** `~/.claude/skills/code-review-pro/`
+
+**Quick Start:**
+```bash
+# Fast check: critical issues only
+Review: hardcoded secrets, injection, circular deps, data loss risks
+
+# 5-min review: all dimensions
+Use QUICK_CHECKLIST.md for Feasibility → Features → Security → Error Handling
+
+# Full review: use agent
+/code-review ultra --comment
+```
+
+See: `code-review-pro/QUICK_CHECKLIST.md` for checklist template
+
+---
+
 ### 1. Python Async/Background Tasks (python-async-pro)
 **For:** FastAPI & Django projects with async task handling
 - **Broker Options:**
@@ -323,6 +345,36 @@ GitHub Actions / GitLab CI examples included
    - Deploy to Kubernetes/cloud
    - Set up monitoring
    - Configure CI/CD
+
+---
+
+---
+
+### 9. GraphQL Patterns (graphql-patterns)
+**For:** Modern GraphQL API design with Apollo + Hasura
+- **Server:** Apollo Server + authentication
+- **Client:** React hooks, caching, real-time subscriptions
+- **Advanced:** Federation, fragments, directives, batch ops
+- **Optimization:** N+1 fixes, query complexity, pagination
+- **Hasura:** Instant GraphQL from PostgreSQL
+- **Location:** `~/.claude/skills/graphql-patterns/`
+
+**Quick Start:**
+```bash
+# Server setup
+Read: FUNDAMENTALS.md → APOLLO_SERVER.md
+
+# Client integration
+Read: APOLLO_CLIENT.md
+
+# Production optimization
+Read: OPTIMIZATION.md
+
+# Quick GraphQL API
+Read: HASURA.md
+```
+
+See: `graphql-patterns/ADVANCED.md` for federation + subscriptions
 
 ---
 

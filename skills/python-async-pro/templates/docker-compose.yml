@@ -1,0 +1,198 @@
+version: '3.8'
+
+services:
+  # PostgreSQL Database
+  postgres:
+    image: postgres:15-alpine
+    container_name: postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: async_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - async_network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  # RabbitMQ Message Broker
+  rabbitmq:
+    image: rabbitmq:3.12-management-alpine
+    container_name: rabbitmq
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+    ports:
+      - "5672:5672"      # AMQP port
+      - "15672:15672"    # Management UI
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq
+    networks:
+      - async_network
+    healthcheck:
+      test: ["CMD", "rabbitmq-diagnostics", "ping"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  # Redis for caching and results
+  redis:
+    image: redis:7-alpine
+    container_name: redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    networks:
+      - async_network
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  # FastAPI Application
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: fastapi_app
+    command: uvicorn main:app --host 0.0.0.0 --port 8000 --reload
+    ports:
+      - "8000:8000"
+    environment:
+      DATABASE_URL: postgresql://postgres:postgres@postgres:5432/async_db
+      CELERY_BROKER_URL: amqp://guest:guest@rabbitmq:5672//
+      CELERY_RESULT_BACKEND: redis://redis:6379/0
+      PYTHONUNBUFFERED: 1
+    volumes:
+      - ./:/app
+    depends_on:
+      postgres:
+        condition: service_healthy
+      rabbitmq:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    networks:
+      - async_network
+
+  # Celery Worker (default queue)
+  celery_worker_default:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: celery_worker_default
+    command: celery -A celery_app worker --loglevel=info --queue=default -c 4
+    environment:
+      DATABASE_URL: postgresql://postgres:postgres@postgres:5432/async_db
+      CELERY_BROKER_URL: amqp://guest:guest@rabbitmq:5672//
+      CELERY_RESULT_BACKEND: redis://redis:6379/0
+      PYTHONUNBUFFERED: 1
+    depends_on:
+      - rabbitmq
+      - redis
+      - postgres
+    volumes:
+      - ./:/app
+    networks:
+      - async_network
+
+  # Celery Worker (high priority queue)
+  celery_worker_high:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: celery_worker_high
+    command: celery -A celery_app worker --loglevel=info --queue=high_priority -c 8
+    environment:
+      DATABASE_URL: postgresql://postgres:postgres@postgres:5432/async_db
+      CELERY_BROKER_URL: amqp://guest:guest@rabbitmq:5672//
+      CELERY_RESULT_BACKEND: redis://redis:6379/0
+      PYTHONUNBUFFERED: 1
+    depends_on:
+      - rabbitmq
+      - redis
+      - postgres
+    volumes:
+      - ./:/app
+    networks:
+      - async_network
+
+  # Celery Worker (low priority queue)
+  celery_worker_low:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: celery_worker_low
+    command: celery -A celery_app worker --loglevel=info --queue=low_priority -c 2
+    environment:
+      DATABASE_URL: postgresql://postgres:postgres@postgres:5432/async_db
+      CELERY_BROKER_URL: amqp://guest:guest@rabbitmq:5672//
+      CELERY_RESULT_BACKEND: redis://redis:6379/0
+      PYTHONUNBUFFERED: 1
+    depends_on:
+      - rabbitmq
+      - redis
+      - postgres
+    volumes:
+      - ./:/app
+    networks:
+      - async_network
+
+  # Celery Beat (scheduler)
+  celery_beat:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: celery_beat
+    command: celery -A celery_app beat --loglevel=info
+    environment:
+      DATABASE_URL: postgresql://postgres:postgres@postgres:5432/async_db
+      CELERY_BROKER_URL: amqp://guest:guest@rabbitmq:5672//
+      CELERY_RESULT_BACKEND: redis://redis:6379/0
+      PYTHONUNBUFFERED: 1
+    depends_on:
+      - rabbitmq
+      - redis
+      - postgres
+    volumes:
+      - ./:/app
+    networks:
+      - async_network
+
+  # Flower (Celery monitoring)
+  flower:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: flower
+    command: celery -A celery_app flower --port=5555 --broker=amqp://guest:guest@rabbitmq:5672//
+    ports:
+      - "5555:5555"
+    environment:
+      CELERY_BROKER_URL: amqp://guest:guest@rabbitmq:5672//
+      CELERY_RESULT_BACKEND: redis://redis:6379/0
+      PYTHONUNBUFFERED: 1
+    depends_on:
+      - rabbitmq
+      - redis
+    volumes:
+      - ./:/app
+    networks:
+      - async_network
+
+networks:
+  async_network:
+    driver: bridge
+
+volumes:
+  postgres_data:
+  rabbitmq_data:
+  redis_data:
