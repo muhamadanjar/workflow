@@ -72,9 +72,9 @@ I need a production-ready service setup
 ```
 I want to build a REST API.
 
-[Available skills: api-design-patterns, testing-strategies-pro, python-async-pro]
+[Available skills: api-design, testing-strategies-pro, python-async-pro]
 
-Show me REST design patterns from @api-design-patterns
+Show me REST design patterns from @api-design
 ```
 
 **Reference During Chat:**
@@ -100,7 +100,7 @@ Pi: Sure, using UNIT_TESTING.md patterns...
 I'm building a Python API. Can you help?
 
 Use:
-@api-design-patterns/REST_GUIDE.md for API design
+@api-design/REST_GUIDE.md for API design
 @fastapi-clean-architecture for structure
 @testing-strategies-pro/UNIT_TESTING.md for tests
 
@@ -134,7 +134,7 @@ Building React dashboard
 
 Using:
 @frontend-design-pro for design patterns
-@api-design-patterns/AUTH_PATTERNS.md for auth
+@api-design/AUTH_PATTERNS.md for auth
 @testing-strategies-pro for E2E tests
 
 Generate:
@@ -224,7 +224,7 @@ Create full FastAPI project with tests and Docker
 ### Get Explanations
 
 ```
-@api-design-patterns/AUTH_PATTERNS.md
+@api-design/AUTH_PATTERNS.md
 
 Explain JWT refresh token pattern
 ```
@@ -271,7 +271,7 @@ with real code examples.
 ### On Phone
 
 ```
-"Hey Pi, show me @api-design-patterns/REST_GUIDE.md
+"Hey Pi, show me @api-design/REST_GUIDE.md
 
 What's the right HTTP status code for not found?"
 
@@ -385,7 +385,7 @@ Conversation → Export
 Me: I need a REST API
 
 Pi: I can help! Which skills?
-Me: @api-design-patterns
+Me: @api-design
 
 Pi: Using REST_GUIDE.md...
 [generates code]

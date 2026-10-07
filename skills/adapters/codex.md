@@ -105,8 +105,8 @@ Copilot will suggest based on skill context.
 ### Example 1: REST API with Auth
 
 ```python
-# @ai-coding-skills/api-design-patterns/REST_GUIDE.md
-# @ai-coding-skills/api-design-patterns/AUTH_PATTERNS.md
+# @ai-coding-skills/api-design/REST_GUIDE.md
+# @ai-coding-skills/api-design/AUTH_PATTERNS.md
 
 from fastapi import FastAPI, Depends
 
@@ -223,7 +223,7 @@ Usage: @ai-coding-skills/skill-name/GUIDE.md
 
 ```python
 # @ai-coding-skills/fastapi-clean-architecture
-# @ai-coding-skills/api-design-patterns/REST_GUIDE.md
+# @ai-coding-skills/api-design/REST_GUIDE.md
 # @ai-coding-skills/testing-strategies-pro
 
 # FastAPI endpoint with REST patterns and tests
@@ -233,7 +233,7 @@ Usage: @ai-coding-skills/skill-name/GUIDE.md
 
 ```go
 // Service handling payment processing
-// @ai-coding-skills/api-design-patterns/THIRD_PARTY.md
+// @ai-coding-skills/api-design/THIRD_PARTY.md
 // @ai-coding-skills/go-microservices-pro/PRODUCTION.md
 
 type PaymentService struct {

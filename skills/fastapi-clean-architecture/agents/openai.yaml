@@ -1,0 +1,3 @@
+interface:
+  display_name: "FastAPI Clean Architecture"
+  short_description: "Design and review FastAPI applications with clean boundaries"

@@ -130,7 +130,7 @@ async def handle_stripe_webhook(request: Request):
     if event["type"] == "payment_intent.succeeded":
         handle_payment_success(event["data"]["object"])
     
-    return {"status": "success"}
+    return {"message": "Webhook processed"}
 ```
 
 ### Retrying Webhooks

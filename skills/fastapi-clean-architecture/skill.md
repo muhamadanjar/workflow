@@ -2,9 +2,9 @@
 id: fastapi-clean-architecture
 name: FastAPI Clean Architecture
 version: 1.0.0
-description: Clean architecture principles for FastAPI applications
+description: Clean Architecture and pragmatic domain modeling for FastAPI applications
 category: backend
-tags: [python, fastapi, architecture]
+tags: [python, fastapi, architecture, ddd]
 platforms: [claude, codex, opencode, pi]
 ---
 
@@ -18,6 +18,7 @@ Professional skill covering backend patterns and best practices.
 
 ## Guides
 
+- SKILL.md
 - README.md
 - ARCHITECTURE_GUIDE.md
 

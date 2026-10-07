@@ -6,9 +6,9 @@ Comprehensive guide to all 10 professional skills. Dengan agent recommendations 
 
 | # | Skill | Focus | Size | Agent |
 |---|-------|-------|------|-------|
-| 0 | **api-standard** | API response format (status, data, metas, message) | 6KB | - |
+| 0 | **api-design** | REST/JSON contracts, auth, integrations, response helper | - | Backend |
 | 1 | **python-async-pro** | Celery, RabbitMQ, task queues | 4KB | senior-backend-architect |
-| 2 | **fastapi-clean-architecture** | DDD, Clean Architecture patterns | 8KB | senior-fullstack-architect |
+| 2 | **fastapi-clean-architecture** | FastAPI layering and pragmatic DDD | 10KB | senior-fullstack-architect |
 | 3 | **frontend-design-pro** | React 19, Next.js 16, shadcn/ui, MUI | 18KB | senior-frontend-reviewer |
 | 4 | **pubsub-messaging** | RabbitMQ, Redis pub/sub patterns | 12KB | senior-backend-architect |
 | 5 | **mermaid-diagrams** | 12 diagram types, rendering, CI/CD | 30KB | system-architect |
@@ -74,47 +74,11 @@ Recommended Agents:
 
 ## 📋 Skill Details
 
-### 0. api-standard
-**Focus:** Standardized API response format (status, data, metas, message)
-**Files:** Python module + Shell script
-- api_standard.py (Python module)
-- api-standard.sh (Shell script)
-- README.md (Guide)
-
-**Features:**
-- `APIResponse` class for simple responses
-- `ResponseBuilder` for complex responses with fluent interface
-- Auto-adds `time_elapsed` (ms)
-- Auto-calculates `total_pages` for pagination
-- Integrated in all services (etl_api, payment_api, usermanagement_api, tileserver_api)
-
-**When to use:**
-- Creating API endpoints
-- Standardizing response format
-- Adding pagination
-- Including metadata
-- Error responses
-
-**Quick Usage:**
-```python
-# Simple
-APIResponse.success(message="OK", data=user)
-
-# Complex
-ResponseBuilder()\
-    .with_message("Users")\
-    .with_data(items)\
-    .with_pagination(page=1, page_size=10, total=100)\
-    .build()
-```
-
-**Shell Commands:**
-```bash
-./api-standard.sh template     # Quick template
-./api-standard.sh pagination   # Pagination example
-./api-standard.sh builder      # ResponseBuilder pattern
-./api-standard.sh docs         # Full documentation
-```
+### 0. api-design
+**Focus:** REST/JSON API contract design, with auth and third-party integration guides plus a legacy response helper.
+**Canonical contract:** `api-design/SKILL.md`
+**Helper:** `api-design/tools/` (response envelope without a JSON `status` field)
+**Guides:** `api-design/README.md`
 
 ---
 
@@ -138,10 +102,11 @@ ResponseBuilder()\
 ---
 
 ### 2. fastapi-clean-architecture
-**Focus:** Domain-Driven Design, clean layering, repository pattern
-**Files:** 2 guides
-- README.md (project structure)
-- ARCHITECTURE_GUIDE.md (400+ lines, 10+ patterns)
+**Focus:** FastAPI boundaries, clean layering, and domain modeling where useful
+**Files:** 3 resources
+- SKILL.md (workflow and architecture rules)
+- README.md (entry point)
+- ARCHITECTURE_GUIDE.md (layer examples and review checklist)
 
 **When to use:**
 - New FastAPI projects
@@ -453,6 +418,7 @@ Monitor & Profile (EXPLAIN ANALYZE)
 
 **Week 1-2: Foundations**
 - Read: database-design/BASICS.md
+- Read: fastapi-clean-architecture/SKILL.md
 - Read: fastapi-clean-architecture/README.md
 - Read: frontend-design-pro/README.md
 
@@ -548,4 +514,3 @@ All skills updated as of: **2026-06-25**
 - ✅ graphql-patterns (Apollo + Hasura, federation, optimization) — **COMPLETED**
 
 **Total:** 10 skills, 60+ guides, 500+ code examples
-

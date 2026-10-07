@@ -133,7 +133,7 @@ Generated files:
 - ✅ database-design
 - ✅ go-microservices-pro
 - ✅ docker-kubernetes-ops
-- ✅ api-design-patterns
+- ✅ api-design
 - ✅ testing-strategies-pro
 - ✅ object-storage-patterns
 - ✅ data-manipulation-pandas

@@ -26,10 +26,11 @@
       "id": "fastapi-clean-architecture",
       "name": "FastAPI Clean Architecture",
       "version": "1.0.0",
-      "description": "Clean architecture principles for FastAPI applications",
+      "description": "Clean Architecture and pragmatic domain modeling for FastAPI applications",
       "category": "backend",
-      "tags": ["python", "fastapi", "architecture"],
+      "tags": ["python", "fastapi", "architecture", "ddd"],
       "guides": [
+        "SKILL.md",
         "README.md",
         "ARCHITECTURE_GUIDE.md"
       ],
@@ -151,17 +152,20 @@
       "platforms": ["claude", "codex", "opencode", "pi"]
     },
     {
-      "id": "api-design-patterns",
-      "name": "API Design Patterns",
+      "id": "api-design",
+      "name": "API Design",
       "version": "1.0.0",
-      "description": "REST, gRPC, GraphQL, and third-party API integration patterns",
+      "description": "REST/JSON API contract standards with auth, integration, and legacy response helper references",
       "category": "backend",
-      "tags": ["api", "rest", "grpc", "graphql", "integration"],
+      "tags": ["api", "rest", "json", "openapi", "contracts", "auth", "integration"],
       "guides": [
+        "SKILL.md",
         "README.md",
         "REST_GUIDE.md",
         "AUTH_PATTERNS.md",
-        "THIRD_PARTY.md"
+        "THIRD_PARTY.md",
+        "API_STANDARD_README.md",
+        "API_STANDARD_USAGE.md"
       ],
       "platforms": ["claude", "codex", "opencode", "pi"]
     },

@@ -47,7 +47,7 @@ https://github.com/yourname/ai-coding-skills
 | Skill | Description | Guides | Category |
 |-------|-------------|--------|----------|
 | **python-async-pro** | Advanced Python async patterns | 3 | Backend |
-| **fastapi-clean-architecture** | FastAPI + Clean Architecture | 2 | Backend |
+| **fastapi-clean-architecture** | FastAPI + Clean Architecture and DDD | 3 | Backend |
 | **frontend-design-pro** | React + TypeScript + Design systems | 6 | Frontend |
 | **pubsub-messaging** | RabbitMQ, Redis messaging | 2 | Backend |
 | **mermaid-diagrams** | Architecture & flow diagrams | 6 | Documentation |
@@ -55,7 +55,7 @@ https://github.com/yourname/ai-coding-skills
 | **database-design** | SQL schema & performance | 8 | Infrastructure |
 | **go-microservices-pro** | Go services & gRPC | 5 | Backend |
 | **docker-kubernetes-ops** | Containers & orchestration | 4 | DevOps |
-| **api-design-patterns** | REST, OAuth, integrations | 4 | Backend |
+| **api-design** | REST/JSON contracts, auth, integrations, response helper | 7 | Backend |
 | **testing-strategies-pro** | Unit, integration, E2E testing | 3 | Testing |
 
 **Total**: 11 skills, 50+ comprehensive guides
@@ -102,7 +102,7 @@ Create production Go service with:
 
 ### Full Stack React App
 ```
-/use frontend-design-pro api-design-patterns testing-strategies-pro
+/use frontend-design-pro api-design testing-strategies-pro
 
 Build React dashboard with:
 1. shadcn components + Zustand
@@ -112,7 +112,7 @@ Build React dashboard with:
 
 ### Python REST API
 ```
-/use fastapi-clean-architecture api-design-patterns testing-strategies-pro
+/use fastapi-clean-architecture api-design testing-strategies-pro
 
 FastAPI service with:
 1. Clean architecture layers

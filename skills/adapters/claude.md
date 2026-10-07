@@ -111,7 +111,7 @@ Use pytest fixtures and mocking.
 ### Example 3: Design React App
 
 ```
-/use frontend-design-pro api-design-patterns
+/use frontend-design-pro api-design
 
 Build a React dashboard that:
 1. Calls REST API (REST_GUIDE.md)
@@ -197,7 +197,7 @@ Can you explain the circuit breaker pattern?
 
 ### Combine Skills
 ```
-/use fastapi-clean-architecture docker-kubernetes-ops api-design-patterns
+/use fastapi-clean-architecture docker-kubernetes-ops api-design
 
 Design and implement a production-ready REST API
 ```

@@ -44,20 +44,15 @@ See: `python-async-pro/PIKA_GUIDE.md` for FastAPI + RabbitMQ + Pika setup
 ---
 
 ### 2. FastAPI Clean Architecture (fastapi-clean-architecture)
-**For:** Production-grade FastAPI projects with clean architecture
-- **Pattern:** Domain → Application → Infrastructure → Presentation
-- **Based on:** usermanagement_api (battle-tested patterns)
-- **Features:** Scaffolding, templates, testing guides, CLI validation
-- **Location:** `~/.claude/skills/fastapi-clean-architecture/`
-
-**Quick Start:**
-```bash
-python ~/.claude/skills/fastapi-clean-architecture/cli.py scaffold --name myproject
-```
+**For:** FastAPI projects that need clear business and technology boundaries
+- **Pattern:** Presentation → Application → Domain; Infrastructure implements domain contracts
+- **Features:** Inspect-first architecture review, pragmatic domain modeling, explicit boundary mapping
+- **Location:** `skills/fastapi-clean-architecture/`
 
 **Documentation:**
-- `README.md` — Project structure & quick start
-- `ARCHITECTURE_GUIDE.md` — Detailed patterns & principles
+- `SKILL.md` — Workflow and architecture rules
+- `README.md` — Entry point
+- `ARCHITECTURE_GUIDE.md` — Layer examples and review checklist
 
 ---
 
@@ -124,25 +119,10 @@ myapp/
 └── tailwind.config.ts
 ```
 
-## CLI Commands
+## Skill References and CLI Commands
 
 ### FastAPI Clean Architecture
-```bash
-# Scaffold new project
-python cli.py scaffold --name myproject
-
-# Scaffold domain entity
-python cli.py scaffold-entity --name User
-
-# Scaffold use case
-python cli.py scaffold-use-case --name LoginUser
-
-# Scaffold API endpoint
-python cli.py scaffold-endpoint --name users
-
-# Validate architecture
-python cli.py validate-architecture
-```
+Use `skills/fastapi-clean-architecture/SKILL.md` for the workflow and `ARCHITECTURE_GUIDE.md` for examples. This skill provides guidance; it does not include an executable scaffold CLI.
 
 ### Python Async
 ```bash

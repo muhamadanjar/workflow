@@ -64,7 +64,7 @@ Create Go service with tests and Docker setup
 
 **Specific Section:**
 ```
-Skills: api-design-patterns, REST_GUIDE.md, status codes section
+Skills: api-design, REST_GUIDE.md, status codes section
 
 Design REST API with proper HTTP status codes
 ```
@@ -77,7 +77,7 @@ skills:
   enabled:
     - go-microservices-pro
     - testing-strategies-pro
-    - api-design-patterns
+    - api-design
     - docker-kubernetes-ops
   search: true
   context: full
@@ -119,7 +119,7 @@ Generate complete scaffolding.
 ### Example 2: API with Authentication
 
 ```
-Skills: api-design-patterns
+Skills: api-design
 
 Build REST API with:
 1. Resource-oriented design (REST_GUIDE.md)
