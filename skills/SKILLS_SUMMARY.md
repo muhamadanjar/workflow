@@ -43,6 +43,14 @@ See: `python-async-pro/PIKA_GUIDE.md` for FastAPI + RabbitMQ + Pika setup
 
 ---
 
+### API Integration (api-integration)
+**For:** Implementing or changing clients that consume an existing API across languages and frameworks
+- **Contract source:** Read the matching OpenAPI specification or official API documentation before API-specific implementation
+- **Fallback:** If documentation is unavailable, request a folder or resource to analyze; do not guess the contract
+- **Location:** `skills/api-integration/SKILL.md`
+
+---
+
 ### 2. FastAPI Clean Architecture (fastapi-clean-architecture)
 **For:** FastAPI projects that need clear business and technology boundaries
 - **Pattern:** Presentation → Application → Domain; Infrastructure implements domain contracts

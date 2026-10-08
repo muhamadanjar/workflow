@@ -134,6 +134,7 @@ Generated files:
 - ✅ go-microservices-pro
 - ✅ docker-kubernetes-ops
 - ✅ api-design
+- ✅ api-integration
 - ✅ testing-strategies-pro
 - ✅ object-storage-patterns
 - ✅ data-manipulation-pandas

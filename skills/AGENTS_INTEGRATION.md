@@ -4,14 +4,21 @@ Guide untuk menggunakan built-in agents dengan skills yang sudah dibuat.
 
 ## Available Agents
 
-Claude memiliki beberapa specialized agents yang bisa digunakan untuk tasks spesifik:
+Agents in `agents/` yang tersedia:
 
-1. **senior-backend-architect** - Backend architecture, databases, APIs, DevOps
-2. **senior-frontend-reviewer** - Frontend code review, React, components, TypeScript
-3. **expert-bug-hunter** - Debugging kompleks, root cause analysis, systematic investigation
-4. **Plan agent** - Design implementation plans, architecture, trade-offs
-5. **production-code-reviewer** - Code audit sebelum production
-6. **system-architect** - System design, technology choices, migrations
+- **senior-fullstack** - Implementasi fitur lintas frontend dan backend
+- **senior-fullstack-architect** - Menyelaraskan arsitektur fitur lintas frontend, backend, dan data
+- **system-architect** - Batas layanan, integrasi antarsistem, deployment, dan operasi
+- **senior-backend-architect** - Desain dan implementasi API, domain, data, dan integrasi backend
+- **senior-frontend-architect** - Arsitektur aplikasi frontend, komponen, state, dan data fetching
+- **frontend-engineer** - Implementasi frontend
+- **production-code-reviewer** - Review kode umum dengan fokus khusus React/Next.js/TypeScript
+- **security-auditor** - Audit kode, dependency, secret, dan konfigurasi keamanan
+- **qa-engineer** - Strategi dan pelaporan pengujian
+- **expert-bug-hunter** - Debugging kompleks dan root-cause analysis
+- **document-engineer** - Dokumentasi teknis
+
+**Plan agent** adalah agent bawaan untuk menyusun rencana implementasi.
 
 ## Skills & Recommended Agents
 
@@ -22,7 +29,7 @@ Claude memiliki beberapa specialized agents yang bisa digunakan untuk tasks spes
   - Design task queue architecture
   - Redis vs RabbitMQ comparison
   - Celery configuration optimization
-  - Worker deployment strategy
+  - Worker execution and concurrency strategy
   
 - **expert-bug-hunter**
   - Debug worker failures
@@ -49,16 +56,9 @@ Which one is best for 10k daily tasks?"
 
 **Related Agents:**
 - **senior-backend-architect** ✅ BEST
-  - Domain-driven design implementation
-  - Repository pattern optimization
-  - Layer separation validation
-  - Dependency injection setup
-  
-- **senior-fullstack-architect** ✅ EXCELLENT
-  - Full DDD implementation
-  - Event sourcing patterns
-  - CQRS design
-  - Bounded context definition
+  - Domain-driven design and bounded contexts
+  - Repository and layer boundaries
+  - Dependency injection, CQRS, and event sourcing where appropriate
   
 - **production-code-reviewer**
   - Audit domain/application/infrastructure layers
@@ -71,8 +71,7 @@ Which one is best for 10k daily tasks?"
 How should I organize: Order aggregate, OrderService, OrderRepository?
 Where does payment logic go?"
 
-→ Use: senior-fullstack-architect (for CQRS/DDD patterns)
-→ Use: senior-backend-architect (for API design)
+→ Use: senior-backend-architect (for backend architecture and API design)
 ```
 
 ---
@@ -80,37 +79,32 @@ Where does payment logic go?"
 ### 3. frontend-design-pro (React/Next.js + shadcn/ui + MUI + Zustand)
 
 **Related Agents:**
-- **senior-frontend-reviewer** ✅ BEST
+- **senior-frontend-architect** ✅ BEST for frontend architecture
   - Component architecture
   - TypeScript type safety
   - State management patterns
   - Zustand store design
-  - Performance optimization
-  
-- **senior-backend-architect**
-  - API integration patterns
-  - Server/Client component split
-  - Next.js API routes design
+  - Server/client boundaries, API integration, and performance strategy
   
 - **production-code-reviewer**
-  - React component audit
-  - Hook best practices
-  - Memory leak detection
+  - React component and hook review
+  - Type safety and accessibility findings
+  - Memory leak and performance issues
 
 **Usage:**
 ```
 "I have 50 form inputs across multiple pages. 
 Should I use react-hook-form + Zustand or Context API?"
 
-→ Use: senior-frontend-reviewer
+→ Use: senior-frontend-architect
 ```
 
 ```
 "My Next.js app loads 2MB of data on home page.
 How to optimize with Server Components and ISR?"
 
-→ Use: senior-backend-architect (for data fetching strategy)
-→ Use: senior-frontend-reviewer (for component structure)
+→ Use: senior-frontend-architect (for data fetching strategy)
+→ Use: production-code-reviewer (to review the components)
 ```
 
 ---
@@ -146,7 +140,7 @@ for real-time notifications to 100k users?"
 ### 5. mermaid-diagrams
 
 **Related Agents:**
-- **system-architect** ✅ BEST
+- **system-architect** ✅ BEST for system-level diagrams
   - Design system architecture diagrams
   - Create flow diagrams
   - Visualize data flow
@@ -189,7 +183,7 @@ API Gateway → Auth Service → Order Service → Payment Service"
 How to improve? Is it cache invalidation or TTL issue?"
 
 → Use: expert-bug-hunter (systematic investigation)
-→ Use: senior-backend-architect (optimization strategy)
+→ Use: senior-backend-architect (backend optimization strategy)
 ```
 
 ---
@@ -220,7 +214,7 @@ How to improve? Is it cache invalidation or TTL issue?"
 Should I add indexes, denormalize, or partition?"
 
 → Use: expert-bug-hunter (to find actual bottleneck)
-→ Use: senior-backend-architect (optimization strategy)
+→ Use: senior-backend-architect (database optimization strategy)
 ```
 
 ```
@@ -237,16 +231,22 @@ How many tables? Normalization level?"
 ### By Task Type
 
 **Architecture & Design:**
-- New system design → **system-architect** or **senior-backend-architect**
-- Refactoring existing → **senior-backend-architect**
-- State management → **senior-frontend-reviewer**
-- Database schema → **senior-backend-architect**
+- System boundaries, deployment, or platform design → **system-architect**
+- Backend architecture, APIs, database, cache, or messaging → **senior-backend-architect**
+- Frontend architecture and state management → **senior-frontend-architect**
+- Aligning a feature across UI, API, and data → **senior-fullstack-architect**
+- Refactoring existing architecture → choose the specialist by affected layer; use **senior-fullstack-architect** for cross-layer refactors
+
+**Implementation:**
+- End-to-end feature → **senior-fullstack**
+- Backend-only change → **senior-backend-architect**
+- Frontend-only change → **frontend-engineer**
 
 **Code Review:**
-- Backend code → **senior-backend-architect**
-- Frontend code → **senior-frontend-reviewer**
+- Backend code → **production-code-reviewer**
+- Frontend code → **production-code-reviewer**
 - Pre-production → **production-code-reviewer**
-- Security-critical → **production-code-reviewer**
+- Security-critical → **security-auditor**
 
 **Debugging:**
 - Intermittent issues → **expert-bug-hunter**
@@ -256,7 +256,7 @@ How many tables? Normalization level?"
 
 **Planning:**
 - Implementation roadmap → **Plan agent**
-- Architecture decision → **system-architect** or **Plan agent**
+- Architecture decision → the relevant architect above; **Plan agent** for implementation roadmap
 - Refactoring strategy → **Plan agent**
 
 ---
@@ -274,7 +274,7 @@ invalidation pattern."
 → Agent creates step-by-step plan
 ```
 
-**Step 2: Architecture Review (senior-backend-architect)**
+**Step 2: Backend Architecture Review (senior-backend-architect)**
 ```
 "My caching plan: cache user profiles (1h TTL), 
 posts (30min), search results (5min). Is this good strategy?"
@@ -301,12 +301,12 @@ Logs show no errors. What's wrong?"
 
 ### Example 2: Build React Component with Complex State
 
-**Step 1: Architecture (senior-frontend-reviewer)**
+**Step 1: Frontend Architecture (senior-frontend-architect)**
 ```
 "I need form with 30 fields, nested validation, 
 async API calls. Zustand or Context API?"
 
-→ Agent recommends architecture and patterns
+→ senior-frontend-architect recommends the frontend structure and patterns
 ```
 
 **Step 2: Implementation Plan (Plan agent)**
@@ -317,7 +317,7 @@ e-commerce cart system with coupon code logic."
 → Agent creates detailed implementation roadmap
 ```
 
-**Step 3: Code Review (senior-frontend-reviewer)**
+**Step 3: Code Review (production-code-reviewer)**
 ```
 "Review my Zustand store and React components."
 
@@ -338,7 +338,7 @@ What's the issue?"
 → Agent uses EXPLAIN ANALYZE, profiles, identifies bottleneck
 ```
 
-**Step 2: Optimization Strategy (senior-backend-architect)**
+**Step 2: Backend Optimization Strategy (senior-backend-architect)**
 ```
 "Should I add another index, denormalize, 
 partition, or refactor query?"
@@ -357,70 +357,63 @@ partition, or refactor query?"
 
 ## When to Use Each Agent
 
-### senior-backend-architect
-✅ Architecture questions
-✅ Technology choices
-✅ System design
-✅ Database design
-✅ API design
-✅ Scaling strategies
-✅ Performance optimization (backend)
-
-❌ Frontend code review
-❌ Debugging intermittent issues
-❌ Detailed code audits
-
----
-
-### senior-frontend-reviewer
-✅ Component architecture
-✅ React/Next.js patterns
-✅ TypeScript strictness
-✅ State management design
-✅ Performance optimization (frontend)
-✅ Hook best practices
-
-❌ Backend architecture
-❌ Database design
-❌ Infra/DevOps
-
----
-
-### expert-bug-hunter
-✅ Intermittent/hard-to-reproduce issues
-✅ Performance investigation
-✅ Root cause analysis
-✅ System-wide issues
-✅ Race conditions
-✅ Memory leaks
-
-❌ General architecture
-❌ Code review for quality
-❌ New feature planning
-
----
-
-### production-code-reviewer
-✅ Pre-deployment code audit
-✅ Security review
-✅ Error handling validation
-✅ Architecture compliance check
-
-❌ General guidance
-❌ Debugging
-❌ Planning
-
----
+### senior-fullstack-architect
+✅ Align feature flows and contracts across frontend, backend, and data
+✅ Resolve state and data ownership across layers
+✅ Plan cross-layer rollout sequencing and compatibility
+✅ Break an end-to-end architecture into implementation work
 
 ### system-architect
-✅ Full system design
-✅ Technology evaluation
-✅ Microservices architecture
-✅ System migrations
+✅ Service boundaries and communication across systems
+✅ Platform, infrastructure, deployment, and operational architecture
+✅ System-level reliability, scalability, observability, and migration trade-offs
+✅ System context, deployment, and interaction diagrams
 
-❌ Code-level details
-❌ Frontend specifics
-❌ Debugging
+### senior-backend-architect
+✅ Backend architecture and implementation in one focused role
+✅ APIs, domain logic, persistence, database migrations, and integrations
+✅ Validation, authorization, error handling, transactions, and compatibility
+✅ Backend caching, background jobs, messaging, and reliability trade-offs
+
+### senior-frontend-architect
+✅ Frontend routes, features, component boundaries, and state ownership
+✅ React/Next.js rendering and data-fetching architecture when used
+✅ Frontend API consumption, accessibility, and performance strategy
+✅ Frontend structure and integration trade-offs
+
+### senior-fullstack
+✅ End-to-end feature implementation across frontend and backend
+✅ Aligning UI, API, persistence, and service integration
+✅ Focused changes that follow existing repository patterns
+
+### production-code-reviewer
+✅ Independent review of backend and frontend changes
+✅ React/Next.js hooks, component patterns, and TypeScript
+✅ Correctness, regression, API compatibility, and performance findings
+✅ Actionable production-readiness feedback
+
+### security-auditor
+✅ Application security and authorization review
+✅ Dependency CVE and secret scanning
+✅ Upload, API, cryptography, logging, and infrastructure checks
+✅ Evidence-based severity and remediation
+
+### frontend-engineer
+✅ Frontend feature implementation
+✅ React/Next.js components, forms, accessibility, and API integration
+
+### qa-engineer
+✅ Test strategy, scenarios, and regression coverage
+✅ Boundary, invalid-input, authorization, failure, and concurrency cases
+✅ Clear test results and coverage gaps
+
+### expert-bug-hunter
+✅ Intermittent or hard-to-reproduce issues
+✅ Evidence-led investigation and root-cause analysis
+✅ Performance, race-condition, and system-layer troubleshooting
+
+### document-engineer
+✅ Setup, API, architecture, and troubleshooting documentation
 
 ---
 
@@ -429,18 +422,21 @@ partition, or refactor query?"
 ```
 Need help with...                    → Use Agent
 ────────────────────────────────────────────────
+"Build an end-to-end feature"     → senior-fullstack
 "Should I cache this?"               → senior-backend-architect
-"How to design this form state?"     → senior-frontend-reviewer
+"How to design this form state?"     → senior-frontend-architect
 "Why is this slow?"                  → expert-bug-hunter
 "Review my code before deploy"       → production-code-reviewer
-"Design full architecture"           → system-architect
+"Design system boundaries"           → system-architect
+"Align this UI and API feature"      → senior-fullstack-architect
 "Plan the implementation"            → Plan agent
-"Is this React pattern good?"        → senior-frontend-reviewer
+"Review this React pattern"          → production-code-reviewer
+"Implement this backend endpoint"    → senior-backend-architect
 "PostgreSQL index strategy"          → senior-backend-architect
 "Message queue design"               → senior-backend-architect
-"Real-time notifications"            → senior-backend-architect
+"Real-time notification topology"    → system-architect
 "Debug connection timeout"           → expert-bug-hunter
-"TypeScript type safety"             → senior-frontend-reviewer
+"TypeScript review"                   → production-code-reviewer
 ```
 
 ---
@@ -480,4 +476,3 @@ Example of WEAK agent prompt:
 
 → Too vague, agent gives generic answer
 ```
-

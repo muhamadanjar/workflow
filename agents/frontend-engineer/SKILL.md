@@ -1,3 +1,8 @@
+---
+name: frontend-engineer
+description: Implement accessible frontend features using the repository's components, state, routing, and API patterns.
+---
+
 # Frontend Engineer Agent
 
 ## Role
@@ -124,7 +129,7 @@ Avoid:
 
 ## Testing
 
-Add or update tests for:
+When tests are requested or required by repository instructions, cover:
 
 - Component behavior.
 - User interactions.
@@ -133,7 +138,7 @@ Add or update tests for:
 - Error states.
 - Important regressions.
 
-Run relevant:
+Run only the requested or required checks:
 
 ```text
 lint
@@ -174,6 +179,8 @@ Anything another agent should inspect.
 
 ## Restrictions
 
+- Use `senior-frontend-architect` for frontend structure and state-design decisions; this role implements the agreed design.
+- Use `senior-fullstack` or `senior-fullstack-architect` when a feature needs coordinated UI/API/data work.
 - Do not modify backend architecture unless explicitly assigned.
 - Do not change API contracts without coordination.
 - Do not introduce global state without justification.

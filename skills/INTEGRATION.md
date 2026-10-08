@@ -77,6 +77,7 @@ Help me implement gRPC streaming
 | go-microservices-pro | Backend | Go services & gRPC |
 | docker-kubernetes-ops | DevOps | Containers & orchestration |
 | api-design | Backend | REST/JSON contracts, auth, third-party integrations, response helper |
+| api-integration | Backend | Implement API consumers from OpenAPI or official API documentation |
 | testing-strategies-pro | Testing | Unit, Integration, E2E tests |
 
 ## Skill Manifest

@@ -24,8 +24,7 @@ Multi-dimensional code review across 4 critical axes:
 | Aspect | Agent |
 |--------|-------|
 | Full review | production-code-reviewer |
-| Backend only | senior-backend-architect |
-| Frontend only | senior-frontend-reviewer |
+| Backend or frontend focus | production-code-reviewer |
 | Security focus | security-auditor |
 | Bug hunting | expert-bug-hunter |
 
@@ -389,7 +388,7 @@ Agent runs all 4 dimensions, posts findings as inline comments.
 Focus on security dimension only. Use security-auditor agent.
 ```
 
-### Using senior-backend-architect
+### For architecture feasibility
 
 ```
 For architecture/feasibility focus on FastAPI code.

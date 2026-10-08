@@ -56,9 +56,10 @@ https://github.com/yourname/ai-coding-skills
 | **go-microservices-pro** | Go services & gRPC | 5 | Backend |
 | **docker-kubernetes-ops** | Containers & orchestration | 4 | DevOps |
 | **api-design** | REST/JSON contracts, auth, integrations, response helper | 7 | Backend |
+| **api-integration** | Implement API consumers from OpenAPI/docs | 1 | Backend |
 | **testing-strategies-pro** | Unit, integration, E2E testing | 3 | Testing |
 
-**Total**: 11 skills, 50+ comprehensive guides
+**Total**: 12 skills, 50+ comprehensive guides
 
 ## 🔧 Platform Integration
 

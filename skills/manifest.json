@@ -170,6 +170,18 @@
       "platforms": ["claude", "codex", "opencode", "pi"]
     },
     {
+      "id": "api-integration",
+      "name": "API Integration",
+      "version": "1.0.0",
+      "description": "Implement API consumers from OpenAPI specifications or official API documentation across projects",
+      "category": "backend",
+      "tags": ["api", "openapi", "integration", "http-client", "consumer"],
+      "guides": [
+        "SKILL.md"
+      ],
+      "platforms": ["claude", "codex", "opencode", "pi"]
+    },
+    {
       "id": "testing-strategies-pro",
       "name": "Testing Strategies Pro",
       "version": "1.0.0",

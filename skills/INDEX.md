@@ -1,6 +1,6 @@
 # Skills Index & Quick Reference
 
-Comprehensive guide to all 10 professional skills. Dengan agent recommendations untuk setiap skill.
+Comprehensive guide to all 11 professional skills. Dengan agent recommendations untuk setiap skill.
 
 ## 📚 All Skills Overview
 
@@ -8,14 +8,15 @@ Comprehensive guide to all 10 professional skills. Dengan agent recommendations 
 |---|-------|-------|------|-------|
 | 0 | **api-design** | REST/JSON contracts, auth, integrations, response helper | - | Backend |
 | 1 | **python-async-pro** | Celery, RabbitMQ, task queues | 4KB | senior-backend-architect |
-| 2 | **fastapi-clean-architecture** | FastAPI layering and pragmatic DDD | 10KB | senior-fullstack-architect |
-| 3 | **frontend-design-pro** | React 19, Next.js 16, shadcn/ui, MUI | 18KB | senior-frontend-reviewer |
+| 2 | **fastapi-clean-architecture** | FastAPI layering and pragmatic DDD | 10KB | senior-backend-architect |
+| 3 | **frontend-design-pro** | React 19, Next.js 16, shadcn/ui, MUI | 18KB | senior-frontend-architect |
 | 4 | **pubsub-messaging** | RabbitMQ, Redis pub/sub patterns | 12KB | senior-backend-architect |
 | 5 | **mermaid-diagrams** | 12 diagram types, rendering, CI/CD | 30KB | system-architect |
 | 6 | **redis-caching** | Data structures, patterns, optimization | 30KB | senior-backend-architect |
 | 7 | **database-design** | PostgreSQL, DDL/DML, triggers, stored procedures | 40KB | senior-backend-architect |
 | 8 | **code-review-pro** | Feasibility, features, security, error handling | 25KB | production-code-reviewer |
-| 9 | **graphql-patterns** | Apollo, Hasura, federation, subscriptions, optimization | 35KB | senior-backend-architect |
+| 9 | **graphql-patterns** | Apollo, Hasura, federation, subscriptions, optimization | 35KB | senior-backend-architect / senior-frontend-architect |
+| 10 | **api-integration** | API consumer integration grounded in OpenAPI and official docs | - | Backend |
 
 ---
 
@@ -49,7 +50,7 @@ Recommended Agent: senior-backend-architect
 3. Reference: python-async-pro (task queues)
 4. Reference: pubsub-messaging (real-time data)
 
-Recommended Agent: senior-frontend-reviewer
+Recommended Agent: senior-frontend-architect
 ```
 
 ### Full Stack (Backend + Frontend + Database)
@@ -64,8 +65,12 @@ Recommended Agent: senior-frontend-reviewer
 7. Diagrams: mermaid-diagrams (for documentation)
 
 Recommended Agents:
-- Architecture: senior-backend-architect
-- Frontend: senior-frontend-reviewer
+- Cross-layer architecture: senior-fullstack-architect
+- System boundaries and deployment: system-architect
+- Backend architecture: senior-backend-architect
+- Frontend architecture: senior-frontend-architect
+- Implementation: senior-fullstack
+- Focused implementation: senior-backend-architect or frontend-engineer
 - Debugging: expert-bug-hunter
 - Pre-prod: production-code-reviewer
 ```
@@ -114,7 +119,7 @@ Recommended Agents:
 - Scaling requirements
 - Team onboarding
 
-**Agent:** senior-fullstack-architect (DDD/CQRS expert)
+**Agent:** senior-backend-architect (DDD/CQRS when justified)
 
 ---
 
@@ -134,7 +139,7 @@ Recommended Agents:
 - State management design
 - Form handling
 
-**Agent:** senior-frontend-reviewer
+**Agent:** senior-frontend-architect
 
 ---
 
@@ -309,7 +314,7 @@ Recommended Agents:
 5. Optimization → OPTIMIZATION.md
 6. No-code API → HASURA.md
 
-**Agent:** senior-backend-architect
+**Agents:** senior-backend-architect (schema and server); senior-frontend-architect (client integration)
 
 ---
 
@@ -441,7 +446,7 @@ Monitor & Profile (EXPLAIN ANALYZE)
 **Week 9-10: Visualization & Deployment**
 - Read: mermaid-diagrams guides
 - Create architecture diagrams
-- Use agent: system-architect for validation
+- Use agent: system-architect for system-level diagram review
 
 ---
 
@@ -453,8 +458,8 @@ Monitor & Profile (EXPLAIN ANALYZE)
 Skill                           Agent
 ─────────────────────────────────────────────
 python-async-pro               senior-backend-architect
-fastapi-clean-architecture     senior-fullstack-architect
-frontend-design-pro            senior-frontend-reviewer
+fastapi-clean-architecture     senior-backend-architect
+frontend-design-pro            senior-frontend-architect
 pubsub-messaging               senior-backend-architect
 mermaid-diagrams               system-architect
 redis-caching                  senior-backend-architect
@@ -468,7 +473,7 @@ Task: Build e-commerce API + React frontend
 ─────────────────────────────────────────
 1. Plan agent → design architecture
 2. senior-backend-architect → API design, database schema
-3. senior-frontend-reviewer → component architecture
+3. senior-frontend-architect → component architecture
 4. system-architect → create system diagrams
 5. production-code-reviewer → audit before deploy
 ```
@@ -492,8 +497,11 @@ All skills include:
 
 **Need help?**
 - Specific skill question → read relevant guide
-- Architecture decision → use senior-backend-architect or system-architect
-- Code review → use senior-frontend-reviewer or production-code-reviewer
+- System boundary or deployment decision → use system-architect
+- Backend design decision → use senior-backend-architect
+- Frontend design decision → use senior-frontend-architect
+- Cross-layer feature decision → use senior-fullstack-architect
+- Code review → use production-code-reviewer
 - Debugging → use expert-bug-hunter
 - Planning → use Plan agent
 
@@ -513,4 +521,4 @@ All skills updated as of: **2026-06-25**
 - ✅ code-review-pro (4 dimensions + quick checklist) — **NEW**
 - ✅ graphql-patterns (Apollo + Hasura, federation, optimization) — **COMPLETED**
 
-**Total:** 10 skills, 60+ guides, 500+ code examples
+**Total:** 11 skills, 60+ guides, 500+ code examples
