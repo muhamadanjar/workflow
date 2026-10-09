@@ -292,6 +292,20 @@
         "SSE_GUIDE.md"
       ],
       "platforms": ["claude", "codex", "opencode", "pi"]
+    },
+    {
+      "id": "design-doc-grilling",
+      "name": "Design Doc Grilling",
+      "version": "1.0.0",
+      "description": "One-question-at-a-time interview to extract context, then write the design doc using the project's design-docs template",
+      "category": "documentation",
+      "tags": ["design-doc", "rfc", "grilling", "interview", "architecture"],
+      "guides": [
+        "SKILL.md",
+        "README.md",
+        "TEMPLATE.md"
+      ],
+      "platforms": ["claude", "codex", "opencode", "pi"]
     }
   ]
 }

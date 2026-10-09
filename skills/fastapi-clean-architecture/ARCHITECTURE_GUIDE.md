@@ -122,6 +122,71 @@ The dependency provider is the composition root: it creates the concrete SQL ada
 
 Keep Pydantic request and response schemas in presentation unless the repository has an explicit convention that places transport DTOs elsewhere. Do not make domain entities double as request bodies or ORM rows.
 
+### Database connection and request usage
+
+The UserManagement database setup is a useful reference for separating resource lifecycle from transaction ownership. Treat the names and layout below as an example; keep the target repository's established transaction boundary if it uses a Unit of Work or another explicit abstraction.
+
+- `DatabaseConnection` creates sync/async engines and session factories, yields sessions, and disposes engines. It owns connection resources, not `begin`, `commit`, or `rollback`.
+- `DatabaseManager` selects a configured connection and wraps a session in one transaction. A successful scope commits; an exception rolls it back. Repositories can add or flush rows, but do not commit independently.
+- The application lifespan initializes and disposes the manager. A session provider scopes a database session to the request, and presentation composition injects a concrete repository into application behavior.
+
+The connection adapter yields and closes a session without deciding the transaction outcome:
+
+```python
+# infrastructure/database/connection.py
+@asynccontextmanager
+async def get_async_session(self) -> AsyncIterator[AsyncSession]:
+    if self._async_session_maker is None:
+        await self.get_async_engine()
+
+    async with self._async_session_maker() as session:
+        yield session
+```
+
+```python
+# infrastructure/database/dependencies.py
+async def get_async_session() -> AsyncIterator[AsyncSession]:
+    async with database_manager.get_async_session("default") as session:
+        yield session
+
+
+# presentation/dependencies/repositories.py
+def get_user_repository(
+    session: AsyncSession = Depends(get_async_session),
+) -> IUserRepository:
+    return UserRepository(session)
+
+
+def get_register_user(
+    users: IUserRepository = Depends(get_user_repository),
+) -> RegisterUser:
+    return RegisterUser(users)
+```
+
+The manager's current implementation also maps database failures to its error contract; the core transaction scope is:
+
+```python
+@asynccontextmanager
+async def get_async_session(self, name: str = "default") -> AsyncIterator[AsyncSession]:
+    async with self.get_connection(name).get_async_session() as session:
+        async with session.begin():
+            yield session
+```
+
+At startup and shutdown, the composition root owns engine initialization and disposal:
+
+```python
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    await database_manager.connect()
+    try:
+        yield
+    finally:
+        await database_manager.disconnect()
+```
+
+This keeps raw sessions and transaction mechanics out of handlers and use cases. Do not copy `DatabaseManager` as a required pattern: when the target repository assigns transaction control to a Unit of Work, keep commit and rollback there and avoid a second owner.
+
 ## Transaction and background-work boundaries
 
 Keep database session lifecycle and adapter mechanics in infrastructure/composition. If a workflow needs a transaction across multiple operations, express that boundary using the target repository's established abstraction and let the composition root provide its implementation. Avoid opening or committing database sessions inside route handlers.

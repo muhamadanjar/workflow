@@ -37,4 +37,4 @@ Use repository or service contracts when they express a real boundary. Follow th
 
 Trace imports and calls across the feature path. Check who owns each invariant, whether application behavior can run without the database/framework, where mapping occurs, and whether handlers or workers contain business or transaction logic. Report concrete locations and distinguish confirmed violations from intentional conventions or migration work.
 
-Preserve public contracts and existing authorization, error, transaction, and atomic audit semantics unless behavior change is explicitly requested. See [ARCHITECTURE_GUIDE.md](ARCHITECTURE_GUIDE.md) for layer examples and common failure modes.
+Preserve public contracts and existing authorization, error, transaction, and atomic audit semantics unless behavior change is explicitly requested. See [README.md](README.md) for the guide index and [ARCHITECTURE_GUIDE.md](ARCHITECTURE_GUIDE.md) for layer examples, database resource and transaction ownership, and common failure modes.
