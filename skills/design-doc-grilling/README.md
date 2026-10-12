@@ -4,7 +4,7 @@ Interview-driven design docs. The `grilling` skill runs the interview (design tr
 
 ## Guides
 
-- [SKILL.md](SKILL.md) — the four phases: recon, grill, confirm, write. Phase 1 delegates to the installed `grilling` skill read-only; `grill-me` is only the user-invoked front door that runs it. Includes when a design doc is required and the fill rules for each template section.
+- [SKILL.md](SKILL.md) — the four phases: recon, grill, confirm, write. Phase 1 delegates to the installed `grilling` skill read-only; `grill-me` is only the user-invoked front door that runs it. Project terms are read from the repo's `CONTEXT.md`/`GLOSSARY.md` and reused verbatim — never invented, never written back. Includes when a design doc is required and the fill rules for each template section.
 - [TEMPLATE.md](TEMPLATE.md) — fallback design-doc template. The target project's own `docs/design-docs/TEMPLATE.md` wins when present.
 
 ## Why both halves
@@ -20,13 +20,30 @@ design-doc-grilling
 └── Phase 4  register in design-docs README, status Draft
 ```
 
-## Quick start
+## Cara pakai langkah demi langkah
 
-```
-Use the design-doc-grilling skill for <feature>.
-Recon the repo, run the installed grilling skill, then write the result
-to docs/design-docs/ using the project template.
-```
+1. **Persiapan** — pastikan repo target punya `docs/design-docs/` (berisi `TEMPLATE.md` dan `README.md` index). Kalau belum ada, bilang dulu; jangan memaksakan skill ini ke repo yang belum menganut design-docs.
+2. **Minta** — beri satu perintah natural yang menyebut skill dan feature-nya:
+
+   ```
+   Gunakan skill design-doc-grilling untuk feature <nama feature>.
+   Recon repo-nya dulu, lalu grill, baru tulis design doc-nya.
+   ```
+
+   Agent akan melakukan Phase 0 (recon: baca `AGENTS.md`, template, PRD/ticket, kode yang tersentuh, `CONTEXT.md`) *sebelum* bertanya apa pun.
+3. **Saat di-grill (Phase 1)** — jawab pertanyaannya. Petunjuk untukmu:
+   - Jawab sesuai fakta & keputusanmu, bukan tebakan.
+   - Jangan dijawab hal yang sudah ada di repo/kode — minta agent cek sendiri. Grill adalah untuk keputusan, bukan untuk fakta.
+   - Setiap pertanyaan biasanya disertai rekomendasi; kamu tetap yang memutuskan.
+4. **Konfirmasi (Phase 2)** — agent memutar ulang log keputusan sebagai daftar singkat, lalu minta konfirmasi. Belum sepakat? Sebut yang salah. Agent **tidak menulis doc sebelum kamu konfirmasi** — kalau dia tulis duluan, itu bug.
+5. **Baca hasilnya (Phase 3)** — doc ditulis ke `<design-docs-dir>/YYYY-MM-DD-judul-singkat.md`, `Status: Draft`, pakai bahasa dokumentasi proyek. Perhatikan:
+   - Bagian yang tidak dijawab/diverifikasi ditandai `[perlu konfirmasi: ...]` — isi sendiri yang kamu tahu.
+   - Seksi template tidak boleh hilang — bagian yang tak berlaku ditulis `N/A` + alasan.
+   - Istilah pakai kata persis dari `CONTEXT.md`/`GLOSSARY.md` proyek.
+6. **Review & status (Phase 4)** — koreksi seperlunya; kalau sudah siap, ubah `Draft → In Review` (manual, bukan skill), tunjuk reviewer, teruskan lewat PR/MR. Jangan tulis nama reviewer/tiket yang kamu tidak tahu.
+7. **Setelah disetujui** — status jadi `Approved` lalu `Implemented`; doc **tidak dihapus** (keputusan `Rejected`/`Deprecated` dicatat sebagai status terminal). Update barisnya di index `README.md` design-docs.
+
+Aturan kunci: skill berhenti di `Draft` — pergerakan status selanjutnya milik manusia. Yang tersisa `[perlu konfirmasi: ...]` disebutkan ke kamu di akhir, lengkap dengan pertanyaan terbuka yang butuh reviewer tertentu.
 
 ## Grill chain (mattpocock skills)
 

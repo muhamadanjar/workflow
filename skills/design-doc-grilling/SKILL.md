@@ -20,7 +20,7 @@ Facts are found, not asked. Before the first question, read what exists:
 1. The project's `AGENTS.md`/`CLAUDE.md`, the design-docs `README.md` and `TEMPLATE.md`, existing design docs in the same area.
 2. The PRD/ticket, if any. Extract goals, user stories, acceptance criteria, constraints.
 3. The code that the change touches: routes, models/schema, callers across services, config, migrations. Use the code graph tool if configured, otherwise focused search.
-4. The glossary/`CONTEXT.md` if present.
+4. The project's glossary: `CONTEXT.md`/`GLOSSARY.md` at the root, or the context's own file when a `GLOSSARY-MAP.md` marks the repo as multi-context. Collect the exact words the project already uses for the things this change touches. Read-only — do not write to it.
 
 Only then build the decision tree. Every open point that the recon already answers is deleted from the tree.
 
@@ -35,6 +35,7 @@ The chain is: `grill-me` is a user-invoked front door (`disable-model-invocation
 Layer these design-doc constraints on top of the grilling session:
 
 - Drive the interview along the decision tree built in Phase 0, branch by branch, resolving dependencies first. A question that only exists if an earlier choice was made comes after that choice.
+- **Settle the terminology as you go.** When the user's wording is fuzzy, or they reach for a synonym for something the glossary already names, quote the project's term and ask which one is correct. The project's own word wins; do not coin new names. A term that does not exist yet and the user does not settle becomes an open question, not a quiet invention.
 - **Always surface at least one real alternative.** If the user presents only one approach, ask what was rejected and why.
 - **Cover the risk axes for every proposal**: backward compatibility, data migration and reversibility, performance, security, operational/rollback. Ask about the axes that apply; record why the others do not.
 - **Log each resolved decision as one line as you go.** The log is the input to Phase 3: unresolved nodes become "Pertanyaan Terbuka", the risk answers become "Dampak & Risiko", the rejected approach becomes "Alternatif yang Dipertimbangkan".
@@ -57,6 +58,7 @@ Use the project's `TEMPLATE.md` from its design-docs directory (fallback: `TEMPL
 - "Alternatif yang Dipertimbangkan": at least two options with a real trade-off table, including the one chosen.
 - "Dampak & Risiko": evaluate each of the five axes explicitly, or state why that axis is not affected.
 - "Pertanyaan Terbuka": mandatory. Every unresolved decision and every assumption you made.
+- Use the project's exact terms, spelled the same way throughout — the words from `CONTEXT.md`/`GLOSSARY.md`, or the ones settled in Phase 1. Do not introduce a synonym the project does not use. A term the project has no word for goes to "Pertanyaan Terbuka" instead of being improvised.
 - Anything the user did not state and you could not verify → `[perlu konfirmasi: ...]`. Never fabricate. Never fill a section with a plausible-sounding guess.
 - Technical, compact prose. No marketing language.
 
@@ -78,5 +80,7 @@ Use the project's `TEMPLATE.md` from its design-docs directory (fallback: `TEMPL
 - Dripping one question at a time when the loaded grilling skill specifies rounds.
 - A single-option "Alternatif" table.
 - Deleting a template section instead of marking it `N/A`.
+- Inventing a synonym for a term the project already has a word for.
+- Writing to `CONTEXT.md`/`GLOSSARY.md` — this skill only reads them.
 - Inventing ticket numbers, reviewers, or requirements to make the doc look complete.
 - Drifting into implementation once the doc is written.
