@@ -4,7 +4,7 @@ Professional AI coding skills for fullstack engineering. Works with **Claude**, 
 
 ## 🎯 What's Inside
 
-11 comprehensive skills covering:
+- 13 featured skills across:
 - **Backend**: Python async, FastAPI, Go microservices, APIs
 - **Frontend**: React, TypeScript, Design systems
 - **Infrastructure**: Docker, Kubernetes, Redis, Databases
@@ -58,8 +58,9 @@ https://github.com/yourname/ai-coding-skills
 | **api-design** | REST/JSON contracts, auth, integrations, response helper | 7 | Backend |
 | **api-integration** | Implement API consumers from OpenAPI/docs | 1 | Backend |
 | **testing-strategies-pro** | Unit, integration, E2E testing | 3 | Testing |
+| **service-docs-lifecycle** | Consistent plans, progress records, and durable feature docs | 2 | Documentation |
 
-**Total**: 12 skills, 50+ comprehensive guides
+**Total**: 13 featured skills, 52+ comprehensive guides
 
 ## 🔧 Platform Integration
 

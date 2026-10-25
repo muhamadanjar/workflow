@@ -1,6 +1,6 @@
 # Skills Index & Quick Reference
 
-Comprehensive guide to all 11 professional skills. Dengan agent recommendations untuk setiap skill.
+Comprehensive guide to 12 professional skills. Dengan agent recommendations untuk setiap skill.
 
 ## 📚 All Skills Overview
 
@@ -17,6 +17,7 @@ Comprehensive guide to all 11 professional skills. Dengan agent recommendations 
 | 8 | **code-review-pro** | Feasibility, features, security, error handling | 25KB | production-code-reviewer |
 | 9 | **graphql-patterns** | Apollo, Hasura, federation, subscriptions, optimization | 35KB | senior-backend-architect / senior-frontend-architect |
 | 10 | **api-integration** | API consumer integration grounded in OpenAPI and official docs | - | Backend |
+| 11 | **service-docs-lifecycle** | Feature plans, progress checkpoints, durable feature docs | 7KB | document-engineer |
 
 ---
 
@@ -521,4 +522,4 @@ All skills updated as of: **2026-06-25**
 - ✅ code-review-pro (4 dimensions + quick checklist) — **NEW**
 - ✅ graphql-patterns (Apollo + Hasura, federation, optimization) — **COMPLETED**
 
-**Total:** 11 skills, 60+ guides, 500+ code examples
+**Total:** 12 skills, 62+ guides, 500+ code examples

@@ -306,6 +306,21 @@
         "TEMPLATE.md"
       ],
       "platforms": ["claude", "codex", "opencode", "pi"]
+    },
+    {
+      "id": "service-docs-lifecycle",
+      "name": "Service Documentation Lifecycle",
+      "version": "1.0.0",
+      "description": "Consistent plan, progress, and durable feature documentation workflows across services",
+      "category": "documentation",
+      "tags": ["documentation", "planning", "progress", "features", "workflow"],
+      "guides": [
+        "skill.md",
+        "README.md",
+        "GUIDE.md",
+        "TEMPLATES.md"
+      ],
+      "platforms": ["claude", "codex", "opencode", "pi"]
     }
   ]
 }
