@@ -4,7 +4,7 @@ Interview-driven design docs. The `grilling` skill runs the interview (design tr
 
 ## Guides
 
-- [SKILL.md](SKILL.md) — the four phases: recon, grill, confirm, write. Phase 1 delegates to the installed `grilling` skill read-only; `grill-me` is only the user-invoked front door that runs it. Project terms are read from the repo's `CONTEXT.md`/`GLOSSARY.md` and reused verbatim — never invented, never written back. Includes when a design doc is required and the fill rules for each template section.
+- [SKILL.md](SKILL.md) — the four phases: recon, grill, confirm, write. Phase 1 delegates to the installed `grilling` skill read-only; each round uses the `ask` tool when available (omp and Pi), with a numbered chat-question fallback elsewhere. `grill-me` is only the user-invoked front door that runs it. Project terms are read from the repo's `CONTEXT.md`/`GLOSSARY.md` and reused verbatim — never invented, never written back. Includes when a design doc is required and the fill rules for each template section.
 - [TEMPLATE.md](TEMPLATE.md) — fallback design-doc template. The target project's own `docs/design-docs/TEMPLATE.md` wins when present.
 
 ## Why both halves

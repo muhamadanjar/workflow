@@ -34,6 +34,12 @@ The chain is: `grill-me` is a user-invoked front door (`disable-model-invocation
 
 Layer these design-doc constraints on top of the grilling session:
 
+### Asking questions across coding agents
+
+- **Always use the `ask` tool** for each grilling round when the coding-agent environment provides it (currently omp and Pi). Put the entire current frontier in one tool call, with concise questions and decision options; include a recommended option for each question. Wait for the user's choices before asking the next round.
+- In environments without an `ask` tool, preserve the same interaction in chat: present the entire current frontier as numbered questions in one round, give explicit choices and a recommendation for each, and wait for the user's answers before continuing. Do not claim to have used a tool that is unavailable.
+- Research environment/repository facts before asking, regardless of whether questions are delivered through a tool or chat. Ask the user for decisions, not facts discoverable from the available context or tools.
+
 - Drive the interview along the decision tree built in Phase 0, branch by branch, resolving dependencies first. A question that only exists if an earlier choice was made comes after that choice.
 - **Settle the terminology as you go.** When the user's wording is fuzzy, or they reach for a synonym for something the glossary already names, quote the project's term and ask which one is correct. The project's own word wins; do not coin new names. A term that does not exist yet and the user does not settle becomes an open question, not a quiet invention.
 - **Always surface at least one real alternative.** If the user presents only one approach, ask what was rejected and why.
